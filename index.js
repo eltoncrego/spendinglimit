@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './App';
+import ChangeLimit from './src/screens/change-spending-limit';
 
-AppRegistry.registerComponent('spendinglimit', () => App);
+AppRegistry.registerComponent('spendinglimit', () => ChangeLimit);

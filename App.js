@@ -4,6 +4,9 @@
  * @flow
  */
 
+
+GLOBAL = require('./src/global-color');
+
 import React, { Component } from 'react';
 import {
   Platform,
@@ -43,16 +46,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: GLOBAL.COLOR.WHITE,
   },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    fontFamily: 'Montserrat',
+    fontWeight: '900',
   },
   instructions: {
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+    fontFamily: 'Open Sans',
   },
 });

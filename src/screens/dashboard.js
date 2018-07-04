@@ -28,8 +28,19 @@ export default class Dashboard extends Component {
       fade_animation: new Animated.Value(0),
       transactionShift: new Animated.Value(0),
       spendinglimit: 0,
+      amountSpent: 0,
+      transactionAmount__f: '',
       currentTransactions: [],
     };
+  }
+
+  async storeItem(key, item) {
+    try {
+      await AsyncStorage.setItem(key, item);
+      return;
+    } catch (error) {
+      return error;
+    }
   }
 
   async retrieveItem(key) {
@@ -92,6 +103,27 @@ export default class Dashboard extends Component {
     ).start();
   }
 
+  validateInput(str) {
+    if (str == ''){
+      alert('You cannot have an empty transaction amount!');
+      return false;
+    } else if (isNaN(str)) {
+      alert('Please enter a valid number.');
+      return false;
+    }
+    return true;
+  }
+
+  addNewTransaction() {
+    if(this.validateInput(this.state.transactionAmount__f)){
+      this.state.currentTransactions.unshift(this.state.transactionAmount__f);
+      this.setState({
+        currentTransactions: this.state.currentTransactions,
+      })
+      this.closeNewTransaction();
+    }
+  }
+
   render() {
 
     var transactionTranslation = this.state.transactionShift.interpolate({
@@ -107,7 +139,6 @@ export default class Dashboard extends Component {
           <TouchableOpacity style={{alignSelf: 'flex-start'}} onPress={() => this.changeSpendingLimit()}>
             <Text style={styles.prompt}>${parseInt(this.state.spendinglimit).toFixed(2)} left</Text>
           </TouchableOpacity>
-          <Text>{this.state.currentTransactions}</Text>
           <View>
             <View style={styles.form}>
               <TouchableOpacity style={styles.button} onPress={() => this.openNewTransaction()}>
@@ -131,7 +162,7 @@ export default class Dashboard extends Component {
                 style={styles.input}
                 placeholder={placeholder}
                 onChangeText={(text) => {
-                  this.setState({spendinglimit__f: text})
+                  this.setState({transactionAmount__f: text})
                 }}/>
             </View>
             <Text style={styles.prompt_label}>{label1}</Text>
@@ -140,7 +171,7 @@ export default class Dashboard extends Component {
                 backgroundColor: GLOBAL.COLOR.GREEN,
                 marginTop: 32
               }]}
-              onPress={() => this.closeNewTransaction()}
+              onPress={() => this.addNewTransaction()}
             >
               <Text style={styles.button_label}>{confirm_button_label}</Text>
             </TouchableOpacity>

@@ -9,10 +9,16 @@ import {
   TouchableOpacity,
   Animated,
   StatusBar,
-  AsyncStorage
+  AsyncStorage,
+  TextInput
 } from 'react-native';
 
-const button_label = 'set new spending limit'
+const button_label = 'set new spending limit';
+const add_button_label = 'add new transaction';
+const confirm_button_label = 'confirm new transaction';
+const add_transaction_prompt = 'How much did you spend?';
+const placeholder = '12.50';
+const label1 = 'This will be subtracted from your spending limit';
 
 export default class Dashboard extends Component {
 
@@ -20,7 +26,9 @@ export default class Dashboard extends Component {
     super(props);
     this.state = {
       fade_animation: new Animated.Value(0),
+      transactionShift: new Animated.Value(0),
       spendinglimit: 0,
+      currentTransactions: [],
     };
   }
 
@@ -64,16 +72,77 @@ export default class Dashboard extends Component {
     });
   }
 
+  openNewTransaction() {
+    Animated.spring(
+      this.state.transactionShift,
+      {
+        toValue: 1,
+        friction: 8,
+      }
+    ).start();
+  }
+
+  closeNewTransaction() {
+    Animated.spring(
+      this.state.transactionShift,
+      {
+        toValue: 0,
+        friction: 8,
+      }
+    ).start();
+  }
+
   render() {
+
+    var transactionTranslation = this.state.transactionShift.interpolate({
+      inputRange: [0, 1],
+      outputRange: [812, 0],
+    });
+    var transformTransaction = {transform: [{translateY: transactionTranslation}]};
 
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle='light-content' />
         <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation}]}>
-          <Text style={styles.prompt}>${parseInt(this.state.spendinglimit).toFixed(2)} left</Text>
-          <View style={styles.form}>
-            <TouchableOpacity style={styles.button} onPress={() => this.changeSpendingLimit()}>
-              <Text style={styles.button_label}>{button_label}</Text>
+          <TouchableOpacity style={{alignSelf: 'flex-start'}} onPress={() => this.changeSpendingLimit()}>
+            <Text style={styles.prompt}>${parseInt(this.state.spendinglimit).toFixed(2)} left</Text>
+          </TouchableOpacity>
+          <Text>{this.state.currentTransactions}</Text>
+          <View>
+            <View style={styles.form}>
+              <TouchableOpacity style={styles.button} onPress={() => this.openNewTransaction()}>
+                <Text style={styles.button_label}>{add_button_label}</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Animated.View>
+
+        <Animated.View style={[styles.transaction_panel, transformTransaction]}>
+          <View style={styles.transaction_form}>
+            <Text style={[styles.prompt, {
+                fontSize: 20,
+                color: GLOBAL.COLOR.DARKGRAY
+            }]}>
+              {add_transaction_prompt}
+            </Text>
+            <View style={styles.form}>
+              <TextInput
+                keyboardType='numeric'
+                style={styles.input}
+                placeholder={placeholder}
+                onChangeText={(text) => {
+                  this.setState({spendinglimit__f: text})
+                }}/>
+            </View>
+            <Text style={styles.prompt_label}>{label1}</Text>
+            <TouchableOpacity
+              style={[styles.button, {
+                backgroundColor: GLOBAL.COLOR.GREEN,
+                marginTop: 32
+              }]}
+              onPress={() => this.closeNewTransaction()}
+            >
+              <Text style={styles.button_label}>{confirm_button_label}</Text>
             </TouchableOpacity>
           </View>
         </Animated.View>
@@ -106,10 +175,10 @@ const styles = StyleSheet.create({
   },
   prompt_label: {
     paddingTop: 4,
-    fontSize: 15,
+    fontSize: 10,
     alignSelf: 'flex-start',
     fontFamily: 'Open Sans',
-    color: GLOBAL.COLOR.WHITE,
+    color: GLOBAL.COLOR.DARKGRAY,
   },
   form: {
     paddingTop: 8,
@@ -121,7 +190,7 @@ const styles = StyleSheet.create({
     width: '100%',
     fontSize: 15,
     fontFamily: 'Open Sans',
-    backgroundColor: GLOBAL.COLOR.WHITE,
+    backgroundColor: 'rgba(52,46,55, 0.20)',
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 4,
@@ -139,5 +208,16 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'Open Sans',
     color: GLOBAL.COLOR.DARKGRAY,
-  }
+  },
+  transaction_panel: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    zIndex: 2,
+    backgroundColor: GLOBAL.COLOR.WHITE,
+  },
+  transaction_form: {
+    padding: 32,
+  },
 });

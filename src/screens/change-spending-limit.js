@@ -86,7 +86,8 @@ export default class ChangeLimit extends Component {
                 placeholder={placeholder}
                 onChangeText={(text) => {
                   this.setState({spendinglimit__f: text})
-                }}/>
+                }}
+                onSubmitEditing={() => this.handleNewSpendingLimit()}/>
             </View>
             <Text style={styles.prompt_label}>{label1}</Text>
           </View>

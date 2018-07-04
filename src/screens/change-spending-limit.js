@@ -60,12 +60,12 @@ export default class ChangeLimit extends Component {
 
   handleNewSpendingLimit() {
     if (this.validateSpendingLimit(this.state.spendinglimit__f)){
-      try{
-        this.storeItem('spendinglimit', this.state.spendinglimit__f);
-      } catch (error) {
+      var that = this;
+      this.storeItem('spendinglimit', this.state.spendinglimit__f).then(() => {
+        that.props.navigation.navigate('Dashboard', { data: { spendinglimit: this.state.spendinglimit__f} });
+      }).catch((error) => {
         alert(error.message);
-      }
-      this.props.navigation.navigate('Dashboard', { data: { spendinglimit: this.state.spendinglimit__f} });
+      });
     }
   }
 

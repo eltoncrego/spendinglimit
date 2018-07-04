@@ -6,10 +6,13 @@ import {
   Text,
   View,
   SafeAreaView,
+  TouchableOpacity,
   Animated,
   StatusBar,
   AsyncStorage
 } from 'react-native';
+
+const button_label = 'set new spending limit'
 
 export default class Dashboard extends Component {
 
@@ -51,6 +54,10 @@ export default class Dashboard extends Component {
     ).start();
   }
 
+  changeSpendingLimit() {
+    this.props.navigation.navigate('ChangeLimit');
+  }
+
   render() {
 
     return (
@@ -58,6 +65,11 @@ export default class Dashboard extends Component {
         <StatusBar barStyle='light-content' />
         <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation}]}>
           <Text style={styles.prompt}>${parseInt(this.state.spendinglimit).toFixed(2)} left</Text>
+          <View style={styles.form}>
+            <TouchableOpacity style={styles.button} onPress={() => this.changeSpendingLimit()}>
+              <Text style={styles.button_label}>{button_label}</Text>
+            </TouchableOpacity>
+          </View>
         </Animated.View>
       </SafeAreaView>
     );

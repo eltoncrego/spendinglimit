@@ -33,7 +33,7 @@ export default class Dashboard extends Component {
     }
   }
 
-  componentWillMount() {
+  refreshSpendingLimit() {
     const that = this;
     this.retrieveItem('spendinglimit').then((data) => {
       that.setState({
@@ -42,6 +42,10 @@ export default class Dashboard extends Component {
     }).catch((error) => {
       alert(error.message);
     });
+  }
+
+  componentWillMount() {
+    this.refreshSpendingLimit();
   }
 
   componentDidMount() {
@@ -55,7 +59,9 @@ export default class Dashboard extends Component {
   }
 
   changeSpendingLimit() {
-    this.props.navigation.navigate('ChangeLimit');
+    this.props.navigation.navigate('ChangeLimit', {
+      onNavigate: () => this.refreshSpendingLimit(),
+    });
   }
 
   render() {

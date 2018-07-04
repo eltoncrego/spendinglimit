@@ -62,6 +62,9 @@ export default class ChangeLimit extends Component {
     if (this.validateSpendingLimit(this.state.spendinglimit__f)){
       var that = this;
       this.storeItem('spendinglimit', this.state.spendinglimit__f).then(() => {
+        if(that.props.navigation.state.params.onNavigate != null){
+          that.props.navigation.state.params.onNavigate();
+        }
         that.props.navigation.navigate('Dashboard', { data: { spendinglimit: this.state.spendinglimit__f} });
       }).catch((error) => {
         alert(error.message);

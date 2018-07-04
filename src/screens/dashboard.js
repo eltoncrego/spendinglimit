@@ -119,7 +119,9 @@ export default class Dashboard extends Component {
       this.state.currentTransactions.unshift(this.state.transactionAmount__f);
       this.setState({
         currentTransactions: this.state.currentTransactions,
+        amountSpent: this.state.amountSpent + parseFloat(this.state.transactionAmount__f),
       })
+      console.log(this.state.amountSpent);
       this.closeNewTransaction();
     }
   }
@@ -137,7 +139,7 @@ export default class Dashboard extends Component {
         <StatusBar barStyle='light-content' />
         <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation}]}>
           <TouchableOpacity style={{alignSelf: 'flex-start'}} onPress={() => this.changeSpendingLimit()}>
-            <Text style={styles.prompt}>${parseInt(this.state.spendinglimit).toFixed(2)} left</Text>
+            <Text style={styles.prompt}>${(parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)} left</Text>
           </TouchableOpacity>
           <View>
             <View style={styles.form}>
@@ -163,7 +165,8 @@ export default class Dashboard extends Component {
                 placeholder={placeholder}
                 onChangeText={(text) => {
                   this.setState({transactionAmount__f: text})
-                }}/>
+                }}
+                onSubmitEditing={() => this.addNewTransaction()}/>
             </View>
             <Text style={styles.prompt_label}>{label1}</Text>
             <TouchableOpacity

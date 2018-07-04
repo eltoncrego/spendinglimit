@@ -7,7 +7,8 @@ import {
   View,
   SafeAreaView,
   Animated,
-  StatusBar
+  StatusBar,
+  AsyncStorage
 } from 'react-native';
 
 export default class Dashboard extends Component {
@@ -16,8 +17,28 @@ export default class Dashboard extends Component {
     super(props);
     this.state = {
       fade_animation: new Animated.Value(0),
-      spendinglimit: this.props.navigation.state.params.data.spendinglimit,
+      spendinglimit: 0,
     };
+  }
+
+  async retrieveItem(key) {
+    try {
+      const item =  await AsyncStorage.getItem(key);
+      return item;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  componentWillMount() {
+    const that = this;
+    this.retrieveItem('spendinglimit').then((data) => {
+      that.setState({
+        spendinglimit: data,
+      });
+    }).catch((error) => {
+      alert(error.message);
+    });
   }
 
   componentDidMount() {

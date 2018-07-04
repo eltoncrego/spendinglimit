@@ -9,7 +9,8 @@ import {
   TextInput,
   TouchableOpacity,
   Animated,
-  StatusBar
+  StatusBar,
+  AsyncStorage
 } from 'react-native';
 
 const spendingPrompt = 'What is your spending limit?'
@@ -48,9 +49,22 @@ export default class ChangeLimit extends Component {
     return true;
   }
 
+  async storeItem(key, item) {
+    try {
+      await AsyncStorage.setItem(key, item);
+      return;
+    } catch (error) {
+      return error;
+    }
+  }
+
   handleNewSpendingLimit() {
     if (this.validateSpendingLimit(this.state.spendinglimit__f)){
-      alert('Your spending limit is $' + parseInt(this.state.spendinglimit__f).toFixed(2));
+      try{
+        this.storeItem('spendinglimit', this.state.spendinglimit__f);
+      } catch (error) {
+        alert(error.message);
+      }
       this.props.navigation.navigate('Dashboard', { data: { spendinglimit: this.state.spendinglimit__f} });
     }
   }

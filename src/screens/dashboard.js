@@ -27,8 +27,8 @@ export default class Dashboard extends Component {
     this.state = {
       fade_animation: new Animated.Value(0),
       transactionShift: new Animated.Value(0),
-      spendinglimit: 0,
-      amountSpent: 0,
+      spendinglimit: '',
+      amountSpent: '0',
       transactionAmount__f: '',
       currentTransactions: [],
     };
@@ -101,6 +101,7 @@ export default class Dashboard extends Component {
         friction: 8,
       }
     ).start();
+    this.clearTransactionPanel();
   }
 
   validateInput(str) {
@@ -112,6 +113,13 @@ export default class Dashboard extends Component {
       return false;
     }
     return true;
+  }
+
+  clearTransactionPanel() {
+    this.refs.input__f.setNativeProps({text: ''});
+    this.setState({
+      transactionAmount__f: '',
+    })
   }
 
   addNewTransaction() {
@@ -139,7 +147,9 @@ export default class Dashboard extends Component {
         <StatusBar barStyle='light-content' />
         <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation}]}>
           <TouchableOpacity style={{alignSelf: 'flex-start'}} onPress={() => this.changeSpendingLimit()}>
-            <Text style={styles.prompt}>${(parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)} left</Text>
+            <Text style={styles.prompt}>${
+                (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
+            } left</Text>
           </TouchableOpacity>
           <View>
             <View style={styles.form}>
@@ -160,6 +170,7 @@ export default class Dashboard extends Component {
             </Text>
             <View style={styles.form}>
               <TextInput
+                ref='input__f'
                 keyboardType='numeric'
                 style={styles.input}
                 placeholder={placeholder}

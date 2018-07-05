@@ -12,6 +12,7 @@ import {
   AsyncStorage,
   TextInput,
   FlatList,
+  Keyboard,
 } from 'react-native';
 
 const button_label = 'set new spending limit';
@@ -26,6 +27,7 @@ export default class Dashboard extends Component {
 
   constructor(props) {
     super(props);
+    this.keyboardHeight = new Animated.Value(0);
     this.state = {
       fade_animation: new Animated.Value(0),
       transactionShift: new Animated.Value(0),
@@ -95,6 +97,9 @@ export default class Dashboard extends Component {
     this.refreshSpendingLimit();
     this.refreshTransactions();
     this.refreshAmountSpent();
+
+    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
   }
 
   componentDidMount() {
@@ -106,6 +111,25 @@ export default class Dashboard extends Component {
       }
     ).start();
   }
+
+  componentWillUnmount() {
+    this.keyboardWillShowSub.remove();
+    this.keyboardWillHideSub.remove();
+  }
+
+  keyboardWillShow = (event) => {
+    Animated.timing(this.keyboardHeight, {
+      duration: event.duration,
+      toValue: event.endCoordinates.height,
+    }).start();
+  };
+
+  keyboardWillHide = (event) => {
+    Animated.timing(this.keyboardHeight, {
+      duration: event.duration,
+      toValue: 0,
+    }).start();
+  };
 
   changeSpendingLimit() {
     AsyncStorage.clear();
@@ -136,6 +160,7 @@ export default class Dashboard extends Component {
       }
     ).start();
     this.clearTransactionPanel();
+    Keyboard.dismiss();
   }
 
   validateInput(str) {
@@ -260,24 +285,26 @@ export default class Dashboard extends Component {
                 onSubmitEditing={() => this.addNewTransaction()}/>
             </View>
             <Text style={styles.prompt_label}>{label1}</Text>
-            <TouchableOpacity
-              style={[styles.button, {
-                backgroundColor: GLOBAL.COLOR.GREEN,
-                marginTop: 32
-              }]}
-              onPress={() => this.addNewTransaction()}
-            >
-              <Text style={styles.button_label}>{confirm_button_label}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.button, {
-                backgroundColor: GLOBAL.COLOR.RED,
-                marginTop: 8
-              }]}
-              onPress={() => this.closeNewTransaction()}
-            >
-              <Text style={styles.button_label}>{cancel_button_label}</Text>
-            </TouchableOpacity>
+            <Animated.View style={{marginBottom: this.keyboardHeight}}>
+              <TouchableOpacity
+                style={[styles.button, {
+                  backgroundColor: GLOBAL.COLOR.GREEN,
+                  marginTop: 32
+                }]}
+                onPress={() => this.addNewTransaction()}
+              >
+                <Text style={styles.button_label}>{confirm_button_label}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.button, {
+                  backgroundColor: GLOBAL.COLOR.RED,
+                  marginTop: 8,
+                }]}
+                onPress={() => this.closeNewTransaction()}
+              >
+                <Text style={styles.button_label}>{cancel_button_label}</Text>
+              </TouchableOpacity>
+            </Animated.View>
           </View>
         </Animated.View>
       </SafeAreaView>
@@ -296,6 +323,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 32,
+    paddingTop: 64,
   },
   prompt: {
     fontSize: 40,

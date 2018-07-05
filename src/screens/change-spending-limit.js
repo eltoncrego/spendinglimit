@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
   Animated,
   StatusBar,
-  AsyncStorage
+  AsyncStorage,
+  Keyboard,
 } from 'react-native';
 
 const spendingPrompt = 'What is your spending limit?'
@@ -22,10 +23,16 @@ export default class ChangeLimit extends Component {
 
   constructor(props) {
     super(props);
+    this.keyboardHeight = new Animated.Value(0);
     this.state = {
       spendinglimit__f: '',
       fade_animation: new Animated.Value(0),
     };
+  }
+
+  componentWillMount() {
+    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
+    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
   }
 
   componentDidMount() {
@@ -37,6 +44,26 @@ export default class ChangeLimit extends Component {
       }
     ).start();
   }
+
+  componentWillUnmount() {
+    this.keyboardWillShowSub.remove();
+    this.keyboardWillHideSub.remove();
+  }
+
+  keyboardWillShow = (event) => {
+    Animated.timing(this.keyboardHeight, {
+      duration: event.duration,
+      toValue: event.endCoordinates.height - 40,
+    }).start();
+  };
+
+  keyboardWillHide = (event) => {
+    Animated.timing(this.keyboardHeight, {
+      duration: event.duration,
+      toValue: 0,
+    }).start();
+  };
+
 
   validateSpendingLimit(limit) {
     if (limit == ''){
@@ -95,11 +122,11 @@ export default class ChangeLimit extends Component {
             </View>
             <Text style={styles.prompt_label}>{label1}</Text>
           </View>
-          <View style={styles.form}>
+          <Animated.View style={[styles.form, {marginBottom: this.keyboardHeight}]}>
             <TouchableOpacity style={styles.button} onPress={() => this.handleNewSpendingLimit()}>
               <Text style={styles.button_label}>{button_label}</Text>
             </TouchableOpacity>
-          </View>
+          </Animated.View>
         </Animated.View>
       </SafeAreaView>
     );
@@ -119,6 +146,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: GLOBAL.COLOR.GREEN,
     padding: 32,
+    paddingTop: 64,
   },
   prompt: {
     fontSize: 40,

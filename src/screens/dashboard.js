@@ -148,11 +148,19 @@ export default class Dashboard extends Component {
     });
     var transformTransaction = {transform: [{translateY: transactionTranslation}]};
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var bg_color = GLOBAL.COLOR.GREEN;
+    var currentRatio = parseFloat(this.state.amountSpent)/parseFloat(this.state.spendinglimit);
+    if((1-currentRatio) < .80){
+      bg_color = GLOBAL.COLOR.YELLOW;
+    }
+    if ((1- currentRatio) < .40){
+      bg_color = GLOBAL.COLOR.RED;
+    }
 
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={[styles.container, {backgroundColor: bg_color}]}>
         <StatusBar barStyle='light-content' />
-        <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation}]}>
+        <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation, backgroundColor: bg_color}]}>
           <TouchableOpacity style={{alignSelf: 'flex-start'}} onPress={() => this.changeSpendingLimit()}>
             <Text style={styles.prompt}>${
                 (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
@@ -221,13 +229,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: GLOBAL.COLOR.GREEN,
   },
   view_container: {
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: GLOBAL.COLOR.GREEN,
     padding: 32,
   },
   prompt: {

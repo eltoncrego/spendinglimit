@@ -79,6 +79,7 @@ export default class Dashboard extends Component {
   }
 
   changeSpendingLimit() {
+    AsyncStorage.clear();
     this.props.navigation.navigate('ChangeLimit', {
       onNavigate: () => this.refreshSpendingLimit(),
     });

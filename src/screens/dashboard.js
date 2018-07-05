@@ -69,7 +69,8 @@ export default class Dashboard extends Component {
   refreshTransactions() {
     const that = this;
     this.retrieveItem('currentTransactions').then((data) => {
-      console.log("Transactions synced: " + JSON.parse(data));
+      console.log("Transactions synced: ");
+      console.log(JSON.parse(data));
       that.setState({
         currentTransactions: data == null ? [] : JSON.parse(data),
       });
@@ -163,12 +164,26 @@ export default class Dashboard extends Component {
         amount: this.state.transactionAmount__f,
       }
       this.state.currentTransactions.unshift(tempTransaction);
+      const newSpending = parseFloat(this.state.amountSpent) + parseFloat(this.state.transactionAmount__f);
       this.setState({
-        currentTransactions: this.state.currentTransactions,
-        amountSpent: parseFloat(this.state.amountSpent) + parseFloat(this.state.transactionAmount__f),
+        amountSpent: newSpending,
       })
       console.log(this.state.currentTransactions);
       this.closeNewTransaction();
+
+      // Push spending data
+      this.storeItem('amountSpent', newSpending.toString()).then(() => {
+        console.log('spending successfully saved')
+      }).catch((error) => {
+        alert(error.message);
+      });
+
+      // Push transaction data
+      this.storeItem('currentTransactions', JSON.stringify(this.state.currentTransactions)).then(() => {
+        console.log('transactions successfully saved')
+      }).catch((error) => {
+        alert(error.message);
+      });
     }
   }
 
@@ -211,7 +226,7 @@ export default class Dashboard extends Component {
               keyExtractor={(item, index) => index}
               renderItem={({item}) =>
                 <View style={styles.flatlist_item}>
-                  <Text style={styles.flatlist_date}>{months[item.date.getMonth()]} {item.date.getDate()}, {item.date.getFullYear()}</Text>
+                  <Text style={styles.flatlist_date}>{months[(new Date(item.date)).getMonth()]} {(new Date(item.date)).getDate()}, {(new Date(item.date)).getFullYear()}</Text>
                   <Text style={styles.flatlist_dollarvalue}>(${parseFloat(item.amount).toFixed(2)})</Text>
                 </View>}
               />

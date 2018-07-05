@@ -17,6 +17,7 @@ import {
 const button_label = 'set new spending limit';
 const add_button_label = 'add new transaction';
 const confirm_button_label = 'confirm new transaction';
+const cancel_button_label = 'nevermind';
 const add_transaction_prompt = 'How much did you spend?';
 const placeholder = '12.50';
 const label1 = 'This will be subtracted from your spending limit';
@@ -70,7 +71,7 @@ export default class Dashboard extends Component {
     this.retrieveItem('currentTransactions').then((data) => {
       console.log("Transactions synced: " + JSON.parse(data));
       that.setState({
-        currentTransactions: JSON.parse(data),
+        currentTransactions: data == null ? [] : JSON.parse(data),
       });
     }).catch((error) => {
       alert(error.message);
@@ -180,6 +181,7 @@ export default class Dashboard extends Component {
     var transformTransaction = {transform: [{translateY: transactionTranslation}]};
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var bg_color = GLOBAL.COLOR.GREEN;
+    var prompt_color = GLOBAL.COLOR.WHITE;
     var currentRatio = parseFloat(this.state.amountSpent)/parseFloat(this.state.spendinglimit);
     if((1-currentRatio) < .80){
       bg_color = GLOBAL.COLOR.YELLOW;
@@ -187,13 +189,17 @@ export default class Dashboard extends Component {
     if ((1- currentRatio) < .40){
       bg_color = GLOBAL.COLOR.RED;
     }
+    if ((1- currentRatio) <= 0){
+      bg_color = GLOBAL.COLOR.DARKGRAY;
+      prompt_color = GLOBAL.COLOR.RED;
+    }
 
     return (
       <SafeAreaView style={[styles.container, {backgroundColor: bg_color}]}>
         <StatusBar barStyle='light-content' />
         <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation, backgroundColor: bg_color}]}>
           <TouchableOpacity style={{alignSelf: 'flex-start'}} onPress={() => this.changeSpendingLimit()}>
-            <Text style={styles.prompt}>${
+            <Text style={[styles.prompt, {color: prompt_color}]}>${
                 (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
             } left</Text>
           </TouchableOpacity>
@@ -213,7 +219,7 @@ export default class Dashboard extends Component {
           <View>
             <View style={styles.form}>
               <TouchableOpacity style={styles.button} onPress={() => this.openNewTransaction()}>
-                <Text style={styles.button_label}>{add_button_label}</Text>
+                <Text style={[styles.button_label, {color: GLOBAL.COLOR.DARKGRAY}]}>{add_button_label}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -247,6 +253,15 @@ export default class Dashboard extends Component {
               onPress={() => this.addNewTransaction()}
             >
               <Text style={styles.button_label}>{confirm_button_label}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.button, {
+                backgroundColor: GLOBAL.COLOR.RED,
+                marginTop: 8
+              }]}
+              onPress={() => this.closeNewTransaction()}
+            >
+              <Text style={styles.button_label}>{cancel_button_label}</Text>
             </TouchableOpacity>
           </View>
         </Animated.View>
@@ -308,7 +323,7 @@ const styles = StyleSheet.create({
   button_label: {
     fontSize: 15,
     fontFamily: 'Open Sans',
-    color: GLOBAL.COLOR.DARKGRAY,
+    color: GLOBAL.COLOR.WHITE,
   },
   transaction_panel: {
     position: 'absolute',

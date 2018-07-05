@@ -10,7 +10,8 @@ import {
   Animated,
   StatusBar,
   AsyncStorage,
-  TextInput
+  TextInput,
+  FlatList,
 } from 'react-native';
 
 const button_label = 'set new spending limit';
@@ -124,12 +125,17 @@ export default class Dashboard extends Component {
 
   addNewTransaction() {
     if(this.validateInput(this.state.transactionAmount__f)){
-      this.state.currentTransactions.unshift(this.state.transactionAmount__f);
+      const d = new Date();
+      let tempTransaction = {
+        date: d,
+        amount: this.state.transactionAmount__f,
+      }
+      this.state.currentTransactions.unshift(tempTransaction);
       this.setState({
         currentTransactions: this.state.currentTransactions,
-        amountSpent: this.state.amountSpent + parseFloat(this.state.transactionAmount__f),
+        amountSpent: parseFloat(this.state.amountSpent) + parseFloat(this.state.transactionAmount__f),
       })
-      console.log(this.state.amountSpent);
+      console.log(this.state.currentTransactions);
       this.closeNewTransaction();
     }
   }
@@ -141,6 +147,7 @@ export default class Dashboard extends Component {
       outputRange: [812, 0],
     });
     var transformTransaction = {transform: [{translateY: transactionTranslation}]};
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     return (
       <SafeAreaView style={styles.container}>
@@ -151,6 +158,19 @@ export default class Dashboard extends Component {
                 (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
             } left</Text>
           </TouchableOpacity>
+          <View style={styles.flatlist_container}>
+            <FlatList
+              style={styles.flatlist}
+              data={this.state.currentTransactions}
+              extraData={this.state}
+              keyExtractor={(item, index) => index}
+              renderItem={({item}) =>
+                <View style={styles.flatlist_item}>
+                  <Text style={styles.flatlist_date}>{months[item.date.getMonth()]} {item.date.getDate()}, {item.date.getFullYear()}</Text>
+                  <Text style={styles.flatlist_dollarvalue}>(${parseFloat(item.amount).toFixed(2)})</Text>
+                </View>}
+              />
+          </View>
           <View>
             <View style={styles.form}>
               <TouchableOpacity style={styles.button} onPress={() => this.openNewTransaction()}>
@@ -245,8 +265,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     backgroundColor: GLOBAL.COLOR.WHITE,
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+    padding: 16,
     borderRadius: 4,
   },
   button_label: {
@@ -261,8 +280,40 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 2,
     backgroundColor: GLOBAL.COLOR.WHITE,
+    shadowColor: GLOBAL.COLOR.DARKGRAY,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.20,
+    shadowRadius: 4,
   },
   transaction_form: {
     padding: 32,
   },
+
+  flatlist_container: {
+    flex: 1,
+    paddingVertical: 16,
+    alignSelf: 'stretch',
+  },
+  flatlist_item: {
+    width: '100%',
+    backgroundColor: GLOBAL.COLOR.WHITE,
+    padding: 16,
+    marginTop: 8,
+    borderRadius: 4,
+    shadowColor: GLOBAL.COLOR.DARKGRAY,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.20,
+    shadowRadius: 4,
+  },
+  flatlist_dollarvalue: {
+    color: GLOBAL.COLOR.RED,
+    fontFamily: 'Montserrat',
+    fontWeight: '900',
+    fontSize: 20,
+  },
+  flatlist_date: {
+    color: GLOBAL.COLOR.DARKGRAY,
+    fontFamily: 'Open Sans',
+    fontSize: 10,
+  }
 });

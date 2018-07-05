@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>48FK3SRUK7.org.reactjs.native.example.spendinglimit</string>
+	<string>54PZU298QV.org.reactjs.native.example.spendinglimit</string>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>48FK3SRUK7.org.reactjs.native.example.spendinglimit</string>
+		<string>54PZU298QV.org.reactjs.native.example.spendinglimit</string>
 	</array>
 </dict>
 </plist>

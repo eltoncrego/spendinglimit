@@ -14,6 +14,7 @@ import {
   FlatList,
   Keyboard,
 } from 'react-native';
+import  FontAwesome, { Icons } from 'react-native-fontawesome';
 
 const button_label = 'set new spending limit';
 const add_button_label = 'add new transaction';
@@ -192,7 +193,7 @@ export default class Dashboard extends Component {
       this.state.currentTransactions.unshift(tempTransaction);
       const newSpending = parseFloat(this.state.amountSpent) + parseFloat(this.state.transactionAmount__f);
       this.setState({
-        amountSpent: newSpending,
+        amountSpent: newSpending.toString(),
       })
       console.log(this.state.currentTransactions);
       this.closeNewTransaction();
@@ -211,6 +212,29 @@ export default class Dashboard extends Component {
         alert(error.message);
       });
     }
+  }
+
+  deleteTransaction(item){
+    console.log(item);
+    this.state.currentTransactions.splice(this.state.currentTransactions.indexOf(item), 1);
+    const newSpending = parseFloat(this.state.amountSpent) - parseFloat(item.amount);
+    this.setState({
+      amountSpent: newSpending.toString(),
+    });
+
+    // Push spending data
+    this.storeItem('amountSpent', newSpending.toString()).then(() => {
+      console.log('spending successfully saved')
+    }).catch((error) => {
+      alert(error.message);
+    });
+
+    // Push transaction data
+    this.storeItem('currentTransactions', JSON.stringify(this.state.currentTransactions)).then(() => {
+      console.log('transactions successfully saved')
+    }).catch((error) => {
+      alert(error.message);
+    });
   }
 
   render() {
@@ -249,11 +273,20 @@ export default class Dashboard extends Component {
               style={styles.flatlist}
               data={this.state.currentTransactions}
               extraData={this.state}
-              keyExtractor={(item, index) => index}
+              keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) =>
                 <View style={styles.flatlist_item}>
-                  <Text style={styles.flatlist_date}>{months[(new Date(item.date)).getMonth()]} {(new Date(item.date)).getDate()}, {(new Date(item.date)).getFullYear()}</Text>
-                  <Text style={styles.flatlist_dollarvalue}>(${parseFloat(item.amount).toFixed(2)})</Text>
+                  <View>
+                    <Text style={styles.flatlist_date}>{months[(new Date(item.date)).getMonth()]} {(new Date(item.date)).getDate()}, {(new Date(item.date)).getFullYear()}</Text>
+                    <Text style={styles.flatlist_dollarvalue}>(${parseFloat(item.amount).toFixed(2)})</Text>
+                  </View>
+                  <View>
+                    <TouchableOpacity style={{marginHorizontal: 8}} onPress={() => this.deleteTransaction(item)}>
+                      <Text style={{color: GLOBAL.COLOR.DARKGRAY, fontSize: 20}}>
+                        <FontAwesome>{Icons.trash}</FontAwesome>
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>}
               />
           </View>
@@ -392,6 +425,9 @@ const styles = StyleSheet.create({
   },
   flatlist_item: {
     width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: GLOBAL.COLOR.WHITE,
     padding: 16,
     marginTop: 8,

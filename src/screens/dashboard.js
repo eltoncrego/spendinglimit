@@ -137,6 +137,7 @@ export default class Dashboard extends Component {
       onNavigate: () => {
         this.refreshSpendingLimit();
         this.refreshTransactions();
+        this.refreshAmountSpent();
       }
     });
   }

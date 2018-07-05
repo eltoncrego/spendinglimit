@@ -47,6 +47,7 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      spendinglimit__checked: false,
       spendinglimit__set: false,
     };
   }
@@ -64,18 +65,19 @@ export default class App extends Component {
     const that = this;
     this.retrieveItem('spendinglimit').then((data) => {
       that.setState({
-        spendinglimit__set: true,
+        spendinglimit__checked: true,
+        spendinglimit__set: data != null,
       });
     }).catch((error) => {
       console.log(error.message);
       that.setState({
-        spendinglimit__set: false,
+        spendinglimit__checked: false,
       });
     });
   }
 
   render() {
-    if(this.state.spendinglimit__set != null){
+    if(this.state.spendinglimit__checked != null){
       if(this.state.spendinglimit__set){
         return <LimitSet/>;
       } else {

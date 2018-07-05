@@ -56,6 +56,7 @@ export default class Dashboard extends Component {
   refreshSpendingLimit() {
     const that = this;
     this.retrieveItem('spendinglimit').then((data) => {
+      console.log("Limit synced: " + data);
       that.setState({
         spendinglimit: data,
       });
@@ -64,8 +65,34 @@ export default class Dashboard extends Component {
     });
   }
 
+  refreshTransactions() {
+    const that = this;
+    this.retrieveItem('currentTransactions').then((data) => {
+      console.log("Transactions synced: " + JSON.parse(data));
+      that.setState({
+        currentTransactions: JSON.parse(data),
+      });
+    }).catch((error) => {
+      alert(error.message);
+    });
+  }
+
+  refreshAmountSpent() {
+    const that = this;
+    this.retrieveItem('amountSpent').then((data) => {
+      console.log("Spending synced: " + data);
+      that.setState({
+        amountSpent: data,
+      });
+    }).catch((error) => {
+      alert(error.message);
+    });
+  }
+
   componentWillMount() {
     this.refreshSpendingLimit();
+    this.refreshTransactions();
+    this.refreshAmountSpent();
   }
 
   componentDidMount() {
@@ -81,7 +108,10 @@ export default class Dashboard extends Component {
   changeSpendingLimit() {
     AsyncStorage.clear();
     this.props.navigation.navigate('ChangeLimit', {
-      onNavigate: () => this.refreshSpendingLimit(),
+      onNavigate: () => {
+        this.refreshSpendingLimit();
+        this.refreshTransactions();
+      }
     });
   }
 
@@ -263,7 +293,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: 'Open Sans',
     backgroundColor: 'rgba(52,46,55, 0.20)',
-    paddingVertical: 8,
+    paddingVertical: 16,
     paddingHorizontal: 16,
     borderRadius: 4,
     color: GLOBAL.COLOR.DARKGRAY,

@@ -47,6 +47,7 @@ export default class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      today: new Date(),
       spendinglimit__checked: false,
       spendinglimit__set: false,
       spendinglimit_expiration: new Date(),
@@ -65,13 +66,17 @@ export default class App extends Component {
   componentWillMount() {
     const that = this;
     this.retrieveItem('spendinglimit').then((data1) => {
-      that.retrieveItem('expiration').then((data2) => {
+      this.retrieveItem('expiration').then((data2) => {
         that.setState({
           spendinglimit__checked: true,
           spendinglimit__set: data1 != null,
           spendinglimit_expiration: new Date(data2),
         });
       }).catch((error) => {
+        that.setState({
+          spendinglimit__checked: true,
+          spendinglimit__set: data1 != null,
+        });
         console.log(error.message);
       });
     }).catch((error) => {
@@ -83,9 +88,8 @@ export default class App extends Component {
   }
 
   render() {
-    const today = new Date();
     if(this.state.spendinglimit__checked != null){
-      if(this.state.spendinglimit_expiration.getTime() <= today.getTime()){
+      if(this.state.spendinglimit_expiration.getTime() <= this.state.today.getTime()){
         return <SetLimit/>;
       } else if (this.state.spendinglimit__set){
         return <LimitSet/>;

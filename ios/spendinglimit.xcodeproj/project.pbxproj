@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -59,10 +60,10 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B534E25F7832493FBF284866 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 20112FDF9EF54CA3A43EA058 /* Montserrat-BlackItalic.ttf */; };
 		BD6D3D4757674E67ACEBA8D4 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0E9B967A4EC4443A9737ADDC /* OpenSans-ExtraBold.ttf */; };
+		D1D282C8AD524C8CADE89AB5 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE35DDF5EA21496AA98A98C9 /* fontawesome-webfont.ttf */; };
 		EF72E49D094E46AF82050FBD /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CF4EE15350448B7AA0BE846 /* OpenSans-LightItalic.ttf */; };
 		FCDFC7D53603417598100B39 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD392B581F55424D966ECB46 /* OpenSans-Italic.ttf */; };
 		FF6286E9CAEA4069BCE5F266 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 70FF5AE52C5647A48A6D88B3 /* Montserrat-ExtraBold.ttf */; };
-		D1D282C8AD524C8CADE89AB5 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE35DDF5EA21496AA98A98C9 /* fontawesome-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,12 +382,12 @@
 		C90495CC969148B1836F8968 /* Montserrat-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBoldItalic.ttf"; path = "../assets/fonts/Montserrat-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		D8899709308B4DCBB3BF674C /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		DD392B581F55424D966ECB46 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic.ttf"; path = "../assets/fonts/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		DE35DDF5EA21496AA98A98C9 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "fontawesome-webfont.ttf"; path = "../assets/fonts/fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		EABC52281292470BB13B6A44 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		EAE782211D5445AD9273BC71 /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		EBBE39CF726547ECB6220813 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		F63D20CDA04341058D989150 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBoldItalic.ttf"; path = "../assets/fonts/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		F67E642C78AE40C9AF6A79BA /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
-		DE35DDF5EA21496AA98A98C9 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; name = "fontawesome-webfont.ttf"; path = "../assets/fonts/fontawesome-webfont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

@@ -151,6 +151,13 @@ export default class Dashboard extends Component {
         friction: 8,
       }
     ).start();
+    Animated.spring(
+      this.state.fade_animation,
+      {
+        toValue: .2,
+        friction: 8,
+      }
+    ).start();
   }
 
   closeNewTransaction() {
@@ -158,6 +165,13 @@ export default class Dashboard extends Component {
       this.state.transactionShift,
       {
         toValue: 0,
+        friction: 8,
+      }
+    ).start();
+    Animated.spring(
+      this.state.fade_animation,
+      {
+        toValue: 1,
         friction: 8,
       }
     ).start();

@@ -175,7 +175,6 @@ export default class Dashboard extends Component {
         friction: 8,
       }
     ).start();
-    this.clearTransactionPanel();
     Keyboard.dismiss();
   }
 
@@ -188,13 +187,6 @@ export default class Dashboard extends Component {
       return false;
     }
     return true;
-  }
-
-  clearTransactionPanel() {
-    this.refs.input__f.setNativeProps({text: ''});
-    this.setState({
-      transactionAmount__f: '',
-    })
   }
 
   addNewTransaction() {
@@ -323,7 +315,6 @@ export default class Dashboard extends Component {
             </Text>
             <View style={styles.form}>
               <TextInput
-                ref='input__f'
                 keyboardType='numeric'
                 style={styles.input}
                 placeholder={placeholder}

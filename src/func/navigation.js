@@ -49,6 +49,7 @@ export default class App extends Component {
     this.state = {
       spendinglimit__checked: false,
       spendinglimit__set: false,
+      spendinglimit_expiration: new Date(),
     };
   }
 
@@ -63,10 +64,15 @@ export default class App extends Component {
 
   componentWillMount() {
     const that = this;
-    this.retrieveItem('spendinglimit').then((data) => {
-      that.setState({
-        spendinglimit__checked: true,
-        spendinglimit__set: data != null,
+    this.retrieveItem('spendinglimit').then((data1) => {
+      that.retrieveItem('expiration').then((data2) => {
+        that.setState({
+          spendinglimit__checked: true,
+          spendinglimit__set: data1 != null,
+          spendinglimit_expiration: new Date(data2),
+        });
+      }).catch((error) => {
+        console.log(error.message);
       });
     }).catch((error) => {
       console.log(error.message);
@@ -77,11 +83,12 @@ export default class App extends Component {
   }
 
   render() {
+    const today = new Date();
     if(this.state.spendinglimit__checked != null){
-      if(this.state.spendinglimit__set){
-        return <LimitSet/>;
-      } else {
+      if(this.state.spendinglimit_expiration.getTime() <= today.getTime()){
         return <SetLimit/>;
+      } else if (this.state.spendinglimit__set){
+        return <LimitSet/>;
       }
     } else {
       // Loader would go here

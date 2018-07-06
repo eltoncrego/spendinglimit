@@ -21,8 +21,9 @@ const add_button_label = 'add new transaction';
 const confirm_button_label = 'confirm new transaction';
 const cancel_button_label = 'nevermind';
 const add_transaction_prompt = 'How much did you spend?';
-const placeholder = '12.50';
+const placeholder = 'e.g. 12.50';
 const label1 = 'This will be subtracted from your spending limit';
+const label2 = 'Until';
 
 export default class Dashboard extends Component {
 
@@ -33,6 +34,7 @@ export default class Dashboard extends Component {
       fade_animation: new Animated.Value(0),
       transactionShift: new Animated.Value(0),
       spendinglimit: '',
+      expiration: '',
       amountSpent: '0',
       transactionAmount__f: '',
       currentTransactions: [],
@@ -63,6 +65,14 @@ export default class Dashboard extends Component {
       console.log("Limit synced: " + data);
       that.setState({
         spendinglimit: data,
+      });
+    }).catch((error) => {
+      alert(error.message);
+    });
+    this.retrieveItem('expiration').then((data) => {
+      console.log("Expiration synced: " + data);
+      that.setState({
+        expiration: data,
       });
     }).catch((error) => {
       alert(error.message);
@@ -273,6 +283,7 @@ export default class Dashboard extends Component {
             <Text style={[styles.prompt, {color: prompt_color}]}>${
                 (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
             } left</Text>
+          <Text style={styles.prompt_label2}>{label2} {months[(new Date(this.state.expiration)).getMonth()]} {(new Date(this.state.expiration)).getDate()}, {(new Date(this.state.expiration)).getFullYear()}</Text>
           </TouchableOpacity>
           <View style={styles.flatlist_container}>
             <FlatList
@@ -378,6 +389,13 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     fontFamily: 'Open Sans',
     color: GLOBAL.COLOR.DARKGRAY,
+  },
+  prompt_label2: {
+    paddingTop: 4,
+    fontSize: 15,
+    alignSelf: 'flex-start',
+    fontFamily: 'Open Sans',
+    color: GLOBAL.COLOR.WHITE,
   },
   form: {
     paddingTop: 8,

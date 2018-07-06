@@ -16,7 +16,7 @@ import {
 
 const spendingPrompt = 'What is your spending limit?'
 const label1 = 'This amount will be used for one week.'
-const placeholder = 'eg. $120.00'
+const placeholder = 'e.g. $120.00'
 const button_label = 'lets save money!'
 
 export default class ChangeLimit extends Component {
@@ -88,12 +88,17 @@ export default class ChangeLimit extends Component {
   handleNewSpendingLimit() {
     if (this.validateSpendingLimit(this.state.spendinglimit__f)){
       var that = this;
+      var nextWeek = new Date((new Date()).getTime() + 7 * 24 * 60 * 60 * 1000);
       this.storeItem('spendinglimit', this.state.spendinglimit__f).then(() => {
         this.storeItem('amountSpent', '0').then(() => {
-          if(that.props.navigation.state.params != null){
-            that.props.navigation.state.params.onNavigate();
-          }
-          that.props.navigation.navigate('Dashboard', { data: { spendinglimit: this.state.spendinglimit__f} });
+          this.storeItem('expiration', nextWeek).then(() => {
+            if(that.props.navigation.state.params != null){
+              that.props.navigation.state.params.onNavigate();
+            }
+            that.props.navigation.navigate('Dashboard', { data: { spendinglimit: this.state.spendinglimit__f} });
+          }).catch((error) => {
+            alert(error.message);
+          });
         }).catch((error) => {
           alert(error.message);
         });

@@ -135,6 +135,7 @@ export default class ChangeLimit extends Component {
                 keyboardType='numeric'
                 style={styles.input}
                 placeholder={placeholder}
+                underlineColorAndroid={'rgba(0,0,0,0)'}
                 onChangeText={(text) => {
                   this.setState({spendinglimit__f: text})
                 }}

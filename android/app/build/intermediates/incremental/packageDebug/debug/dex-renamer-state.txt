@@ -1,0 +1,4 @@
+#Tue Jul 10 19:07:44 PDT 2018
+base.0=/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

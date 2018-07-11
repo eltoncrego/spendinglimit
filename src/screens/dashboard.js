@@ -332,6 +332,7 @@ export default class Dashboard extends Component {
                 keyboardType='numeric'
                 style={styles.input}
                 placeholder={placeholder}
+                underlineColorAndroid={'rgba(0,0,0,0)'}
                 onChangeText={(text) => {
                   this.setState({transactionAmount__f: text})
                 }}

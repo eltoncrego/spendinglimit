@@ -275,14 +275,17 @@ export default class Dashboard extends Component {
       prompt_color = GLOBAL.COLOR.RED;
     }
 
+    var limitDifference = (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
+    var limitPrompt = limitDifference < 0 ?
+      <Text style={[styles.prompt, {color: prompt_color}]}>${-limitDifference} over</Text>
+      : <Text style={[styles.prompt, {color: prompt_color}]}>${limitDifference} left</Text>;
+
     return (
       <SafeAreaView style={[styles.container, {backgroundColor: bg_color}]}>
         <StatusBar barStyle='light-content' />
         <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation, backgroundColor: bg_color}]}>
           <TouchableOpacity style={{alignSelf: 'flex-start'}} onPress={() => this.changeSpendingLimit()}>
-            <Text style={[styles.prompt, {color: prompt_color}]}>${
-                (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
-            } left</Text>
+            {limitPrompt}
           <Text style={styles.prompt_label2}>{label2} {months[(new Date(this.state.expiration)).getMonth()]} {(new Date(this.state.expiration)).getDate()}, {(new Date(this.state.expiration)).getFullYear()}</Text>
           </TouchableOpacity>
           <View style={styles.flatlist_container}>

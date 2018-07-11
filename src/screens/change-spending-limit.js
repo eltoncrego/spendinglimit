@@ -24,6 +24,7 @@ export default class ChangeLimit extends Component {
   constructor(props) {
     super(props);
     this.keyboardHeight = new Animated.Value(0);
+    this.textTransform = new Animated.Value(0);
     this.state = {
       spendinglimit__f: '',
       fade_animation: new Animated.Value(0),
@@ -53,12 +54,20 @@ export default class ChangeLimit extends Component {
   keyboardWillShow = (event) => {
     Animated.timing(this.keyboardHeight, {
       duration: event.duration,
-      toValue: event.endCoordinates.height - 40,
+      toValue: event.endCoordinates.height,
+    }).start();
+    Animated.timing(this.textTransform, {
+      duration: event.duration,
+      toValue: 1,
     }).start();
   };
 
   keyboardWillHide = (event) => {
     Animated.timing(this.keyboardHeight, {
+      duration: event.duration,
+      toValue: 0,
+    }).start();
+    Animated.timing(this.textTransform, {
       duration: event.duration,
       toValue: 0,
     }).start();
@@ -109,12 +118,18 @@ export default class ChangeLimit extends Component {
   }
 
   render() {
+
+    var promptSize = this.textTransform.interpolate({
+      inputRange: [0, 1],
+      outputRange: [40, 20],
+    });
+
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle='light-content'/>
         <Animated.View style={[styles.view_container, {opacity: this.state.fade_animation}]}>
           <View>
-            <Text style={styles.prompt}>{spendingPrompt}</Text>
+            <Animated.Text style={[styles.prompt, {fontSize: promptSize}]}>{spendingPrompt}</Animated.Text>
             <View style={styles.form}>
               <TextInput
                 keyboardType='numeric'
@@ -154,7 +169,6 @@ const styles = StyleSheet.create({
     paddingTop: 64,
   },
   prompt: {
-    fontSize: 40,
     textAlign: 'left',
     fontFamily: 'Montserrat',
     fontWeight: '900',

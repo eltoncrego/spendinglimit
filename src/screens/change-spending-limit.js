@@ -17,7 +17,7 @@ import {
 const spendingPrompt = 'What is your spending limit?'
 const label1 = 'This amount will be used for one week.'
 const placeholder = 'e.g. $120.00'
-const button_label = 'lets save money!'
+const button_label = 'let\'s save money!'
 
 export default class ChangeLimit extends Component {
 

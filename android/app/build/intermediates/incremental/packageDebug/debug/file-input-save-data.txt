@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jul 10 21:00:41 PDT 2018
+#Tue Jul 10 21:06:20 PDT 2018
 5.base=/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
 42.base=/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
 22.path=fonts/Open Sans.ttf

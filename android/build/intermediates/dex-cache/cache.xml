@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/eltoncrego/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/preDex/release/16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/2d5464c4c6001cce57264be942aae6f8/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/preDex/release/3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
+        <dex dex="/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/preDex/release/1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/285fc028c95b71f1ae5d6bda0c1e7a13/jars/libs/internal_impl-23.0.1.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/preDex/release/5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/preDex/release/2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/285fc028c95b71f1ae5d6bda0c1e7a13/jars/classes.jar"
+        jumboMode="false"
+        min-sdk-version="16"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="/Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/build/intermediates/transforms/preDex/release/4.jar" />
+    </item>
+
+</items>

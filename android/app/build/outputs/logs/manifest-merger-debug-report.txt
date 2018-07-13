@@ -4,18 +4,18 @@ ADDED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spend
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:1:1-26:12
-MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/AndroidManifest.xml:2:1-15:12
-MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/2d5464c4c6001cce57264be942aae6f8/AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/285fc028c95b71f1ae5d6bda0c1e7a13/AndroidManifest.xml:17:1-24:12
-MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/eec55825c3a8aaa26a3700d4ec051743/AndroidManifest.xml:10:1-18:12
-MERGED from [com.facebook.fresco:fresco:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fresco-1.3.0.aar/e089b30b12099f198848831bafb7a1db/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.3.0.aar/5682943ad87b06194e643f9f1388f989/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/98031a9ded58f0adc558abf3e050d9d4/AndroidManifest.xml:1:1-4:12
-MERGED from [org.webkit:android-jsc:r174650] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/d59d7b1ddcb77e360f17e24485079439/AndroidManifest.xml:1:1-3:12
-MERGED from [com.facebook.fresco:drawee:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/drawee-1.3.0.aar/e8d96050409e88cfb7301111a7d523dd/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-1.3.0.aar/66ceb7183fd02cc053dd58850a688221/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:imagepipeline-base:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.3.0.aar/a16064108da20bfd668be93b35b9be38/AndroidManifest.xml:2:1-9:12
-MERGED from [com.facebook.fresco:fbcore:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fbcore-1.3.0.aar/38d0b81a616eaf64ac2db4082cdec3f6/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/8f2be57fbf684bc37fa146f946c4a8ba/AndroidManifest.xml:2:1-15:12
+MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/6cebc229ad835dc5b0455579ad2bcd34/AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/56007c787948ecd1042930f9210346fe/AndroidManifest.xml:17:1-24:12
+MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/bf50b82e90adef53905886a1047ec3c9/AndroidManifest.xml:10:1-18:12
+MERGED from [com.facebook.fresco:fresco:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fresco-1.3.0.aar/1845f974a75d4e4687c06648cc517496/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.3.0.aar/096df9970cff7f184ea7251fe4e082bd/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/40cc41bcb6cc1535daa0adf578c2718f/AndroidManifest.xml:1:1-4:12
+MERGED from [org.webkit:android-jsc:r174650] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/6bda25397bdd1c7287e0c08384e16f54/AndroidManifest.xml:1:1-3:12
+MERGED from [com.facebook.fresco:drawee:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/drawee-1.3.0.aar/262121818fb3beb113eaf3c9b0fdcd5b/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-1.3.0.aar/eebb7146e43099f3b4911fe48d9ccde3/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:imagepipeline-base:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.3.0.aar/955340b70faebab8c5585bed470b3d36/AndroidManifest.xml:2:1-9:12
+MERGED from [com.facebook.fresco:fbcore:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fbcore-1.3.0.aar/d6c1eaf0291d23c944d66a0b7e2fe9bc/AndroidManifest.xml:2:1-9:12
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:1:1-26:12
@@ -39,22 +39,22 @@ ADDED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spend
 		ADDED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:4:22-64
 uses-permission#android.permission.SYSTEM_ALERT_WINDOW
 ADDED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:5:5-77
-MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/AndroidManifest.xml:11:5-78
-MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/AndroidManifest.xml:11:5-78
+MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/8f2be57fbf684bc37fa146f946c4a8ba/AndroidManifest.xml:11:5-78
+MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/8f2be57fbf684bc37fa146f946c4a8ba/AndroidManifest.xml:11:5-78
 	android:name
 		ADDED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:5:22-75
 application
 ADDED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:7:5-24:19
-MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/AndroidManifest.xml:13:5-20
-MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/AndroidManifest.xml:13:5-20
-MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/2d5464c4c6001cce57264be942aae6f8/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/2d5464c4c6001cce57264be942aae6f8/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/285fc028c95b71f1ae5d6bda0c1e7a13/AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/285fc028c95b71f1ae5d6bda0c1e7a13/AndroidManifest.xml:22:5-20
-MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/98031a9ded58f0adc558abf3e050d9d4/AndroidManifest.xml:3:3-17
-MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/98031a9ded58f0adc558abf3e050d9d4/AndroidManifest.xml:3:3-17
-MERGED from [org.webkit:android-jsc:r174650] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/d59d7b1ddcb77e360f17e24485079439/AndroidManifest.xml:2:3-17
-MERGED from [org.webkit:android-jsc:r174650] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/d59d7b1ddcb77e360f17e24485079439/AndroidManifest.xml:2:3-17
+MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/8f2be57fbf684bc37fa146f946c4a8ba/AndroidManifest.xml:13:5-20
+MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/8f2be57fbf684bc37fa146f946c4a8ba/AndroidManifest.xml:13:5-20
+MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/6cebc229ad835dc5b0455579ad2bcd34/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/6cebc229ad835dc5b0455579ad2bcd34/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/56007c787948ecd1042930f9210346fe/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/56007c787948ecd1042930f9210346fe/AndroidManifest.xml:22:5-20
+MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/40cc41bcb6cc1535daa0adf578c2718f/AndroidManifest.xml:3:3-17
+MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/40cc41bcb6cc1535daa0adf578c2718f/AndroidManifest.xml:3:3-17
+MERGED from [org.webkit:android-jsc:r174650] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/6bda25397bdd1c7287e0c08384e16f54/AndroidManifest.xml:2:3-17
+MERGED from [org.webkit:android-jsc:r174650] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/android-jsc-r174650.aar/6bda25397bdd1c7287e0c08384e16f54/AndroidManifest.xml:2:3-17
 	android:label
 		ADDED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml:9:7-39
 	android:icon
@@ -93,28 +93,28 @@ uses-sdk
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml
-MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/AndroidManifest.xml:7:5-9:41
-MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/e327f34ad5a4643eb99b84a5d5d9926e/AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/2d5464c4c6001cce57264be942aae6f8/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/2d5464c4c6001cce57264be942aae6f8/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/285fc028c95b71f1ae5d6bda0c1e7a13/AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/285fc028c95b71f1ae5d6bda0c1e7a13/AndroidManifest.xml:20:5-43
-MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/eec55825c3a8aaa26a3700d4ec051743/AndroidManifest.xml:14:5-16:41
-MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/eec55825c3a8aaa26a3700d4ec051743/AndroidManifest.xml:14:5-16:41
-MERGED from [com.facebook.fresco:fresco:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fresco-1.3.0.aar/e089b30b12099f198848831bafb7a1db/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fresco:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fresco-1.3.0.aar/e089b30b12099f198848831bafb7a1db/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.3.0.aar/5682943ad87b06194e643f9f1388f989/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.3.0.aar/5682943ad87b06194e643f9f1388f989/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/98031a9ded58f0adc558abf3e050d9d4/AndroidManifest.xml:2:3-70
-MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/98031a9ded58f0adc558abf3e050d9d4/AndroidManifest.xml:2:3-70
-MERGED from [com.facebook.fresco:drawee:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/drawee-1.3.0.aar/e8d96050409e88cfb7301111a7d523dd/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:drawee:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/drawee-1.3.0.aar/e8d96050409e88cfb7301111a7d523dd/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-1.3.0.aar/66ceb7183fd02cc053dd58850a688221/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-1.3.0.aar/66ceb7183fd02cc053dd58850a688221/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-base:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.3.0.aar/a16064108da20bfd668be93b35b9be38/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:imagepipeline-base:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.3.0.aar/a16064108da20bfd668be93b35b9be38/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fbcore:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fbcore-1.3.0.aar/38d0b81a616eaf64ac2db4082cdec3f6/AndroidManifest.xml:5:5-7:41
-MERGED from [com.facebook.fresco:fbcore:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fbcore-1.3.0.aar/38d0b81a616eaf64ac2db4082cdec3f6/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/8f2be57fbf684bc37fa146f946c4a8ba/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.react:react-native:0.55.4] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/8f2be57fbf684bc37fa146f946c4a8ba/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/6cebc229ad835dc5b0455579ad2bcd34/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.0.1.aar/6cebc229ad835dc5b0455579ad2bcd34/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/56007c787948ecd1042930f9210346fe/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:23.0.1] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/support-v4-23.0.1.aar/56007c787948ecd1042930f9210346fe/AndroidManifest.xml:20:5-43
+MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/bf50b82e90adef53905886a1047ec3c9/AndroidManifest.xml:14:5-16:41
+MERGED from [com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.0.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/textlayoutbuilder-1.0.0.aar/bf50b82e90adef53905886a1047ec3c9/AndroidManifest.xml:14:5-16:41
+MERGED from [com.facebook.fresco:fresco:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fresco-1.3.0.aar/1845f974a75d4e4687c06648cc517496/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fresco:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fresco-1.3.0.aar/1845f974a75d4e4687c06648cc517496/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.3.0.aar/096df9970cff7f184ea7251fe4e082bd/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-okhttp3:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-okhttp3-1.3.0.aar/096df9970cff7f184ea7251fe4e082bd/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/40cc41bcb6cc1535daa0adf578c2718f/AndroidManifest.xml:2:3-70
+MERGED from [com.facebook.soloader:soloader:0.1.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/soloader-0.1.0.aar/40cc41bcb6cc1535daa0adf578c2718f/AndroidManifest.xml:2:3-70
+MERGED from [com.facebook.fresco:drawee:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/drawee-1.3.0.aar/262121818fb3beb113eaf3c9b0fdcd5b/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:drawee:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/drawee-1.3.0.aar/262121818fb3beb113eaf3c9b0fdcd5b/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-1.3.0.aar/eebb7146e43099f3b4911fe48d9ccde3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-1.3.0.aar/eebb7146e43099f3b4911fe48d9ccde3/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.3.0.aar/955340b70faebab8c5585bed470b3d36/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:imagepipeline-base:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/imagepipeline-base-1.3.0.aar/955340b70faebab8c5585bed470b3d36/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fbcore-1.3.0.aar/d6c1eaf0291d23c944d66a0b7e2fe9bc/AndroidManifest.xml:5:5-7:41
+MERGED from [com.facebook.fresco:fbcore:1.3.0] /Users/eltoncrego/.gradle/caches/transforms-1/files-1.1/fbcore-1.3.0.aar/d6c1eaf0291d23c944d66a0b7e2fe9bc/AndroidManifest.xml:5:5-7:41
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/android/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion

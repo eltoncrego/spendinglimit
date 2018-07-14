@@ -229,6 +229,9 @@ export default class Dashboard extends Component {
     } else if (isNaN(str)) {
       alert('Please enter a valid number.');
       return false;
+    } else if (parseFloat(str) < 0) {
+      alert('Please enter a non-negative number.');
+      return false;
     }
     return true;
   }

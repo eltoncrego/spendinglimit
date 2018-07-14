@@ -82,6 +82,9 @@ export default class ChangeLimit extends Component {
     } else if (isNaN(limit)) {
       alert('Please enter a valid number.');
       return false;
+    } else if (parseFloat(limit) < 0) {
+      alert('Please enter a non-negative number.');
+      return false;
     }
     return true;
   }

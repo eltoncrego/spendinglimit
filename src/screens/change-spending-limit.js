@@ -12,6 +12,7 @@ import {
   StatusBar,
   AsyncStorage,
   Keyboard,
+  DeviceEventEmitter,
 } from 'react-native';
 
 const spendingPrompt = 'What is your spending limit?'

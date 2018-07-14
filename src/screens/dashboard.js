@@ -13,6 +13,7 @@ import {
   TextInput,
   FlatList,
   Keyboard,
+  DeviceEventEmitter,
 } from 'react-native';
 import  FontAwesome, { Icons } from 'react-native-fontawesome';
 
@@ -114,6 +115,37 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
+    var that = this;
+    var QuickActions = require('react-native-quick-actions');
+
+    // Add few actions
+    QuickActions.setShortcutItems([
+      {
+        type: "newTransaction",
+        title: "New Transaction",
+        icon: "Add",
+      },
+      {
+        type: 'changeSpendingLimit',
+        title: "New Spending Limit",
+        icon: "Compose",
+      }
+    ]);
+
+    DeviceEventEmitter.addListener(
+      'quickActionShortcut', function(data) {
+        switch(data.type){
+          case 'newTransaction':
+            that.openNewTransaction();
+            break;
+          case 'changeSpendingLimit':
+            that.changeSpendingLimit();
+            break;
+          default:
+            break;
+        }
+      }
+    );
     Animated.timing(
       this.state.fade_animation,
       {
@@ -124,6 +156,8 @@ export default class Dashboard extends Component {
   }
 
   componentWillUnmount() {
+    var QuickActions = require('react-native-quick-actions');
+    QuickActions.clearShortcutItems();
     this.keyboardWillShowSub.remove();
     this.keyboardWillHideSub.remove();
   }

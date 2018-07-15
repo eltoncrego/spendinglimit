@@ -132,6 +132,21 @@ export default class Dashboard extends Component {
       }
     ]);
 
+    QuickActions.popInitialAction().then((data) => {
+      if(data !== null){
+        switch(data.type){
+          case 'newTransaction':
+            that.openNewTransaction();
+            break;
+          case 'changeSpendingLimit':
+            that.changeSpendingLimit();
+            break;
+          default:
+            break;
+        }
+      }
+    }).catch(console.error);
+
     DeviceEventEmitter.addListener(
       'quickActionShortcut', function(data) {
         switch(data.type){
@@ -146,6 +161,7 @@ export default class Dashboard extends Component {
         }
       }
     );
+
     Animated.timing(
       this.state.fade_animation,
       {
@@ -156,8 +172,6 @@ export default class Dashboard extends Component {
   }
 
   componentWillUnmount() {
-    var QuickActions = require('react-native-quick-actions');
-    QuickActions.clearShortcutItems();
     this.keyboardWillShowSub.remove();
     this.keyboardWillHideSub.remove();
   }
@@ -177,6 +191,8 @@ export default class Dashboard extends Component {
   };
 
   changeSpendingLimit() {
+    var QuickActions = require('react-native-quick-actions');
+    QuickActions.clearShortcutItems();
     AsyncStorage.clear();
     this.props.navigation.navigate('ChangeLimit', {
       onNavigate: () => {

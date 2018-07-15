@@ -13,6 +13,7 @@ import {
   AsyncStorage,
   Keyboard,
   DeviceEventEmitter,
+  QuickActions,
 } from 'react-native';
 
 const spendingPrompt = 'What is your spending limit?'
@@ -108,6 +109,21 @@ export default class ChangeLimit extends Component {
             if(that.props.navigation.state.params != null){
               that.props.navigation.state.params.onNavigate();
             }
+            var QuickActions = require('react-native-quick-actions');
+
+            // Add few actions
+            QuickActions.setShortcutItems([
+              {
+                type: "newTransaction",
+                title: "New Transaction",
+                icon: "Add",
+              },
+              {
+                type: 'changeSpendingLimit',
+                title: "New Spending Limit",
+                icon: "Compose",
+              }
+            ]);
             that.props.navigation.navigate('Dashboard', { data: { spendinglimit: this.state.spendinglimit__f} });
           }).catch((error) => {
             alert(error.message);

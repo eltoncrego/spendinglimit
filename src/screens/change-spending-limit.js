@@ -39,6 +39,8 @@ export default class ChangeLimit extends Component {
   }
 
   componentDidMount() {
+    var QuickActions = require('react-native-quick-actions');
+    QuickActions.clearShortcutItems();
     Animated.timing(
       this.state.fade_animation,
       {

@@ -34,6 +34,7 @@ export default class Dashboard extends Component {
     this.state = {
       fade_animation: new Animated.Value(0),
       transactionShift: new Animated.Value(0),
+      categoryColor: new Animated.Value(0),
       spendinglimit: '',
       expiration: '',
       amountSpent: '0',
@@ -290,6 +291,16 @@ export default class Dashboard extends Component {
     });
   }
 
+  toggleCategoryColor() {
+    Animated.spring(
+      this.state.categoryColor,
+      {
+        toValue: !this.state.categoryColor._value,
+        friction: 8,
+      }
+    ).start();
+  }
+
   render() {
 
     var transactionTranslation = this.state.transactionShift.interpolate({
@@ -298,8 +309,10 @@ export default class Dashboard extends Component {
     });
     var transformTransaction = {transform: [{translateY: transactionTranslation}]};
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
     var bg_color = GLOBAL.COLOR.GREEN;
     var prompt_color = GLOBAL.COLOR.WHITE;
+
     var currentRatio = parseFloat(this.state.amountSpent)/parseFloat(this.state.spendinglimit);
     if((1-currentRatio) < .80){
       bg_color = GLOBAL.COLOR.YELLOW;
@@ -311,6 +324,11 @@ export default class Dashboard extends Component {
       bg_color = GLOBAL.COLOR.DARKGRAY;
       prompt_color = GLOBAL.COLOR.RED;
     }
+
+    var categoryButtonColor = this.state.categoryColor.interpolate({
+      inputRange: [0, 1],
+      outputRange: [GLOBAL.COLOR.DARKGRAY, GLOBAL.COLOR.RED],
+    });
 
     var limitDifference = (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
     var limitPrompt = limitDifference < 0 ?
@@ -374,6 +392,13 @@ export default class Dashboard extends Component {
                   this.setState({transactionAmount__f: text})
                 }}
                 onSubmitEditing={() => this.addNewTransaction()}/>
+              <TouchableOpacity style={styles.category_button} onPress={() => this.toggleCategoryColor()}>
+                <Animated.View style={[styles.category_container, {backgroundColor: categoryButtonColor}]}>
+                  <Text style={{color: GLOBAL.COLOR.WHITE, fontSize: 20, textAlign: 'center', margin: 0}}>
+                    <FontAwesome>{Icons.tag}</FontAwesome>
+                  </Text>
+                </Animated.View>
+              </TouchableOpacity>
             </View>
             <Text style={styles.prompt_label}>{label1}</Text>
             <Animated.View style={{marginBottom: this.keyboardHeight}}>
@@ -444,16 +469,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  input: {
-    width: '100%',
-    fontSize: 15,
-    fontFamily: 'Open Sans',
-    backgroundColor: 'rgba(52,46,55, 0.20)',
-    paddingVertical: 16,
-    paddingHorizontal: 16,
-    borderRadius: 4,
-    color: GLOBAL.COLOR.DARKGRAY,
-  },
   button: {
     alignItems: 'center',
     width: '100%',
@@ -480,6 +495,27 @@ const styles = StyleSheet.create({
   },
   transaction_form: {
     padding: 32,
+  },
+  input: {
+    // width: '100%',
+    flex: 3,
+    fontSize: 15,
+    fontFamily: 'Open Sans',
+    backgroundColor: 'rgba(52,46,55, 0.20)',
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    borderRadius: 4,
+    color: GLOBAL.COLOR.DARKGRAY,
+  },
+  category_button: {
+    flex: 1,
+    marginLeft: 8,
+    borderRadius: 4,
+  },
+  category_container: {
+    flex: 1,
+    padding: 16,
+    borderRadius: 4,
   },
 
   flatlist_container: {

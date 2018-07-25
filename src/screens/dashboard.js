@@ -25,6 +25,12 @@ const add_transaction_prompt = 'How much did you spend?';
 const placeholder = 'e.g. 12.50';
 const label1 = 'This will be subtracted from your spending limit';
 const label2 = 'Until';
+const cat1_label = 'savings';
+const cat2_label = 'auto/transport';
+const cat3_label = 'utilities';
+const cat4_label = 'food/entertainment';
+const cat5_label = 'health/personal care';
+const cat6_label = 'custom';
 
 export default class Dashboard extends Component {
 
@@ -34,8 +40,10 @@ export default class Dashboard extends Component {
     this.state = {
       fade_animation: new Animated.Value(0),
       transactionShift: new Animated.Value(0),
-      categoryColor: new Animated.Value(0),
+      categoryButton: new Animated.Value(0),
+      categoryIconSwitch: 0,
       spendinglimit: '',
+      selectedCategory: -1,
       expiration: '',
       amountSpent: '0',
       transactionAmount__f: '',
@@ -243,6 +251,7 @@ export default class Dashboard extends Component {
       let tempTransaction = {
         date: d,
         amount: this.state.transactionAmount__f,
+        category: this.state.selectedCategory,
       }
       this.state.currentTransactions.unshift(tempTransaction);
       const newSpending = parseFloat(this.state.amountSpent) + parseFloat(this.state.transactionAmount__f);
@@ -291,14 +300,44 @@ export default class Dashboard extends Component {
     });
   }
 
-  toggleCategoryColor() {
+  toggleCategoryButton() {
+    this.setState({
+      categoryIconSwitch: !this.state.categoryIconSwitch
+    });
+    if(this.state.categoryButton._value <= 1){
+      Animated.spring(
+        this.state.categoryButton,
+        {
+          toValue: this.state.categoryButton._value == 0 ? 1 : 0,
+          friction: 8,
+        }
+      ).start();
+    } else {
+      Animated.spring(
+        this.state.categoryButton,
+        {
+          toValue: this.state.categoryButton._value != 0 ? 1 : 0,
+          friction: 8,
+        }
+      ).start();
+      this.setState({
+        selectedCategory: -1,
+      });
+    }
+  }
+
+  setCategory(category_code) {
     Animated.spring(
-      this.state.categoryColor,
+      this.state.categoryButton,
       {
-        toValue: !this.state.categoryColor._value,
+        toValue: category_code,
         friction: 8,
       }
     ).start();
+    this.setState({
+      categoryIconSwitch: !this.state.categoryIconSwitch,
+      selectedCategory: category_code - 2,
+    });
   }
 
   render() {
@@ -325,15 +364,77 @@ export default class Dashboard extends Component {
       prompt_color = GLOBAL.COLOR.RED;
     }
 
-    var categoryButtonColor = this.state.categoryColor.interpolate({
-      inputRange: [0, 1],
-      outputRange: [GLOBAL.COLOR.DARKGRAY, GLOBAL.COLOR.RED],
+    var categoryButtonColor = this.state.categoryButton.interpolate({
+      inputRange: [0, 1, 2, 3, 4, 5, 6, 7],
+      outputRange: [GLOBAL.COLOR.DARKGRAY, GLOBAL.COLOR.RED, GLOBAL.COLOR.TEEL, GLOBAL.COLOR.RUBY, GLOBAL.COLOR.SHADOW, GLOBAL.COLOR.RAJA, GLOBAL.COLOR.GRUILLO, GLOBAL.COLOR.LIGHTGRAY],
     });
+    var categoryButtonSpin = this.state.categoryButton.interpolate({
+      inputRange: [0, 1, 2, 3, 4, 5, 6, 7],
+      outputRange: ['0deg', '720deg', '0deg', '0deg', '0deg', '0deg', '0deg', '0deg'],
+    });
+    var categorySpinTransform = {transform: [{rotateZ: categoryButtonSpin}]};
+    const cats = [cat1_label, cat2_label, cat3_label, cat4_label, cat5_label, cat6_label]
+    const cat_colors = [GLOBAL.COLOR.TEEL, GLOBAL.COLOR.RUBY, GLOBAL.COLOR.SHADOW, GLOBAL.COLOR.RAJA, GLOBAL.COLOR.GRUILLO, GLOBAL.COLOR.LIGHTGRAY]
+
+    var buttonIcon = this.state.categoryIconSwitch == 0 ?
+      <FontAwesome>{Icons.tag}</FontAwesome> : <FontAwesome>{Icons.times}</FontAwesome>;
+    var categoriesForm = this.state.categoryIconSwitch == 0 ?
+      null :
+      <View>
+        <TouchableOpacity
+          style={[styles.category_button_wrapper, {
+            backgroundColor: GLOBAL.COLOR.TEEL,
+            marginTop: 16
+          }]}
+          onPress={() => this.setCategory(2)}
+        >
+          <Text style={styles.category_button_label}>{cat1_label}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.category_button_wrapper, {
+            backgroundColor: GLOBAL.COLOR.RUBY,
+            marginTop: 8
+          }]}
+          onPress={() => this.setCategory(3)}
+        >
+          <Text style={styles.category_button_label}>{cat2_label}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.category_button_wrapper, {
+            backgroundColor: GLOBAL.COLOR.SHADOW,
+            marginTop: 8
+          }]}
+          onPress={() => this.setCategory(4)}
+        >
+          <Text style={styles.category_button_label}>{cat3_label}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.category_button_wrapper, {
+            backgroundColor: GLOBAL.COLOR.RAJA,
+            marginTop: 8
+          }]}
+          onPress={() => this.setCategory(5)}
+        >
+          <Text style={styles.category_button_label}>{cat4_label}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.category_button_wrapper, {
+            backgroundColor: GLOBAL.COLOR.GRUILLO,
+            marginTop: 8
+          }]}
+          onPress={() => this.setCategory(6)}
+        >
+          <Text style={styles.category_button_label}>{cat5_label}</Text>
+        </TouchableOpacity>
+      </View>
+
+      ;
 
     var limitDifference = (parseFloat(this.state.spendinglimit) - parseFloat(this.state.amountSpent)).toFixed(2)
     var limitPrompt = limitDifference < 0 ?
       <Text style={[styles.prompt, {color: prompt_color}]}>${-limitDifference} over</Text>
       : <Text style={[styles.prompt, {color: prompt_color}]}>${limitDifference} left</Text>;
+
 
     return (
       <SafeAreaView style={[styles.container, {backgroundColor: bg_color}]}>
@@ -351,17 +452,25 @@ export default class Dashboard extends Component {
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) =>
                 <View style={styles.flatlist_item}>
-                  <View>
-                    <Text style={styles.flatlist_date}>{months[(new Date(item.date)).getMonth()]} {(new Date(item.date)).getDate()}, {(new Date(item.date)).getFullYear()}</Text>
-                    <Text style={styles.flatlist_dollarvalue}>(${parseFloat(item.amount).toFixed(2)})</Text>
+                  <View style={styles.og_flatlist_items}>
+                    <View>
+                      <Text style={styles.flatlist_date}>{months[(new Date(item.date)).getMonth()]} {(new Date(item.date)).getDate()}, {(new Date(item.date)).getFullYear()}</Text>
+                      <Text style={styles.flatlist_dollarvalue}>(${parseFloat(item.amount).toFixed(2)})</Text>
+                    </View>
+                    <View>
+                      <TouchableOpacity style={{marginHorizontal: 8}} onPress={() => this.deleteTransaction(item)}>
+                        <Text style={{color: GLOBAL.COLOR.DARKGRAY, fontSize: 20}}>
+                          <FontAwesome>{Icons.trash}</FontAwesome>
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
-                  <View>
-                    <TouchableOpacity style={{marginHorizontal: 8}} onPress={() => this.deleteTransaction(item)}>
-                      <Text style={{color: GLOBAL.COLOR.DARKGRAY, fontSize: 20}}>
-                        <FontAwesome>{Icons.trash}</FontAwesome>
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
+                  {
+                    item.category == -1 ? null :
+                    <View style={[styles.flatlist_category_banner, {backgroundColor: item.category == -1 ? GLOBAL.COLOR.RED : cat_colors[item.category]}]}>
+                      <Text style={styles.flatlist_category}>{cats[item.category]}</Text>
+                    </View>
+                  }
                 </View>}
               />
           </View>
@@ -392,15 +501,16 @@ export default class Dashboard extends Component {
                   this.setState({transactionAmount__f: text})
                 }}
                 onSubmitEditing={() => this.addNewTransaction()}/>
-              <TouchableOpacity style={styles.category_button} onPress={() => this.toggleCategoryColor()}>
+              <TouchableOpacity style={styles.category_button} onPress={() => this.toggleCategoryButton()}>
                 <Animated.View style={[styles.category_container, {backgroundColor: categoryButtonColor}]}>
-                  <Text style={{color: GLOBAL.COLOR.WHITE, fontSize: 20, textAlign: 'center', margin: 0}}>
-                    <FontAwesome>{Icons.tag}</FontAwesome>
-                  </Text>
+                  <Animated.Text style={[{color: GLOBAL.COLOR.WHITE, fontSize: 20, textAlign: 'center', margin: 0}, categorySpinTransform]}>
+                    {buttonIcon}
+                  </Animated.Text>
                 </Animated.View>
               </TouchableOpacity>
             </View>
             <Text style={styles.prompt_label}>{label1}</Text>
+            {categoriesForm}
             <Animated.View style={{marginBottom: this.keyboardHeight}}>
               <TouchableOpacity
                 style={[styles.button, {
@@ -512,6 +622,19 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     borderRadius: 4,
   },
+  category_button_wrapper: {
+    alignItems: 'center',
+    width: '100%',
+    backgroundColor: GLOBAL.COLOR.WHITE,
+    padding: 4,
+    paddingVertical: 10,
+    borderRadius: 4,
+  },
+  category_button_label: {
+    fontSize: 12,
+    fontFamily: 'Open Sans',
+    color: GLOBAL.COLOR.WHITE,
+  },
   category_container: {
     flex: 1,
     padding: 16,
@@ -523,10 +646,17 @@ const styles = StyleSheet.create({
     paddingVertical: 16,
     alignSelf: 'stretch',
   },
-  flatlist_item: {
+  og_flatlist_items: {
     width: '100%',
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  flatlist_item: {
+    width: '100%',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     backgroundColor: GLOBAL.COLOR.WHITE,
     padding: 16,
@@ -545,6 +675,19 @@ const styles = StyleSheet.create({
   },
   flatlist_date: {
     color: GLOBAL.COLOR.DARKGRAY,
+    fontFamily: 'Open Sans',
+    fontSize: 10,
+  },
+  flatlist_category_banner: {
+    // width: '100%',
+    alignSelf: 'flex-start',
+    padding: 8,
+    marginTop: 8,
+    borderRadius: 4,
+  },
+  flatlist_category: {
+    alignSelf: 'flex-start',
+    color: GLOBAL.COLOR.WHITE,
     fontFamily: 'Open Sans',
     fontSize: 10,
   }

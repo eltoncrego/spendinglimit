@@ -87,9 +87,23 @@ export default class App extends Component {
     });
   }
 
+  refreshTransactions() {
+    const that = this;
+    this.retrieveItem('currentTransactions').then((data) => {
+      console.log("Transactions synced: ");
+      console.log(JSON.parse(data));
+      that.setState({
+        currentTransactions: data == null ? [] : JSON.parse(data),
+      });
+    }).catch((error) => {
+      alert(error.message);
+    });
+  }
+
   render() {
     if(this.state.spendinglimit__checked != null){
-      if(this.state.spendinglimit_expiration.getTime() <= this.state.today.getTime()){
+      if(this.state.spendinglimit_expiration.setHours(0,0,0,0) <= this.state.today.getTime()){
+        this.refreshTransactions();
         return <SetLimit/>;
       } else if (this.state.spendinglimit__set){
         return <LimitSet/>;

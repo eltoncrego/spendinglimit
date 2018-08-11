@@ -28,8 +28,10 @@ const confirm_button_label = 'confirm new transaction';
 const cancel_button_label = 'nevermind';
 const add_transaction_prompt = 'How much did you spend?';
 const placeholder = 'e.g. 12.50';
+const placeholder2 = 'Payee or Notes';
 const label1 = 'This will be subtracted from your spending limit';
 const label2 = 'Until';
+const label3 = 'This will show below the transactio'
 
 export default class Dashboard extends Component {
 
@@ -43,6 +45,7 @@ export default class Dashboard extends Component {
       expiration: '',
       amountSpent: '0',
       transactionAmount__f: '',
+      transactionNote__f: '',
       currentTransactions: [],
     };
   }
@@ -245,6 +248,7 @@ export default class Dashboard extends Component {
       let tempTransaction = {
         date: d,
         amount: this.state.transactionAmount__f,
+        note: this.state.transactionNote__f,
       }
       this.state.currentTransactions.unshift(tempTransaction);
       const newSpending = parseFloat(this.state.amountSpent) + parseFloat(this.state.transactionAmount__f);
@@ -336,17 +340,27 @@ export default class Dashboard extends Component {
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) =>
                 <View style={styles.flatlist_item}>
-                  <View>
-                    <Text style={styles.flatlist_date}>{months[(new Date(item.date)).getMonth()]} {(new Date(item.date)).getDate()}, {(new Date(item.date)).getFullYear()}</Text>
-                    <Text style={styles.flatlist_dollarvalue}>(${parseFloat(item.amount).toFixed(2)})</Text>
+                  <View style={styles.flatlist_item_wrapper}>
+                    <View>
+                      <Text style={styles.flatlist_date}>{months[(new Date(item.date)).getMonth()]} {(new Date(item.date)).getDate()}, {(new Date(item.date)).getFullYear()}</Text>
+                      <Text style={styles.flatlist_dollarvalue}>(${parseFloat(item.amount).toFixed(2)})</Text>
+                    </View>
+                    <View>
+                      <TouchableOpacity style={{marginHorizontal: 8}} onPress={() => this.deleteTransaction(item)}>
+                        <Text style={{color: GLOBAL.COLOR.DARKGRAY, fontSize: 20}}>
+                          <FontAwesome>{Icons.trash}</FontAwesome>
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
                   </View>
-                  <View>
-                    <TouchableOpacity style={{marginHorizontal: 8}} onPress={() => this.deleteTransaction(item)}>
-                      <Text style={{color: GLOBAL.COLOR.DARKGRAY, fontSize: 20}}>
-                        <FontAwesome>{Icons.trash}</FontAwesome>
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
+                  {
+                    item.note == null ? null :
+                    <View style={styles.note_tags}>
+                      <View style={styles.note_tag_item}>
+                        <Text style={styles.note_tag_text}>{item.note.toUpperCase()}</Text>
+                      </View>
+                    </View>
+                  }
                 </View>}
               />
           </View>
@@ -379,6 +393,20 @@ export default class Dashboard extends Component {
                 onSubmitEditing={() => this.addNewTransaction()}/>
             </View>
             <Text style={styles.prompt_label}>{label1}</Text>
+
+            <View style={styles.form}>
+              <TextInput
+                keyboardType='default'
+                style={styles.input}
+                placeholder={placeholder2}
+                underlineColorAndroid={'rgba(0,0,0,0)'}
+                onChangeText={(text) => {
+                  this.setState({transactionNote__f: text})
+                }}
+                onSubmitEditing={() => this.addNewTransaction()}/>
+            </View>
+            <Text style={styles.prompt_label}>{label3}</Text>
+
             <Animated.View style={{marginBottom: this.keyboardHeight}}>
               <TouchableOpacity
                 style={[styles.button, {
@@ -492,9 +520,6 @@ const styles = StyleSheet.create({
   },
   flatlist_item: {
     width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     backgroundColor: GLOBAL.COLOR.WHITE,
     padding: 16,
     marginTop: 8,
@@ -504,6 +529,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.20,
     shadowRadius: 4,
   },
+  flatlist_item_wrapper: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   flatlist_dollarvalue: {
     color: GLOBAL.COLOR.RED,
     fontFamily: 'Montserrat',
@@ -512,6 +543,23 @@ const styles = StyleSheet.create({
   },
   flatlist_date: {
     color: GLOBAL.COLOR.DARKGRAY,
+    fontFamily: 'Open Sans',
+    fontSize: 10,
+  },
+  note_tags: {
+    marginTop: 16,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
+  note_tag_item: {
+    borderRadius: 4,
+    backgroundColor: GLOBAL.COLOR.LIGHTGRAY,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  note_tag_text: {
+    color: GLOBAL.COLOR.WHITE,
     fontFamily: 'Open Sans',
     fontSize: 10,
   }

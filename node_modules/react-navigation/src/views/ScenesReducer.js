@@ -130,16 +130,26 @@ export default function ScenesReducer(
         return;
       }
       const lastScene = scenes.find(scene => scene.route.key === route.key);
-      const descriptor = lastScene && lastScene.descriptor;
 
-      staleScenes.set(key, {
-        index,
-        isActive: false,
-        isStale: true,
-        key,
-        route,
-        descriptor,
-      });
+      // We can get into a weird place where we have a queued transition and then clobber
+      // that transition without ever actually rendering the scene, in which case
+      // there is no lastScene. If the descriptor is not available on the lastScene
+      // or the descriptors prop then we just skip adding it to stale scenes and it's
+      // not ever rendered.
+      const descriptor = lastScene
+        ? lastScene.descriptor
+        : descriptors[route.key];
+
+      if (descriptor) {
+        staleScenes.set(key, {
+          index,
+          isActive: false,
+          isStale: true,
+          key,
+          route,
+          descriptor,
+        });
+      }
     });
   }
 

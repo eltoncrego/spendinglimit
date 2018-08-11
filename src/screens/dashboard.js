@@ -32,7 +32,7 @@ const placeholder = 'e.g. 12.50';
 const placeholder2 = 'Payee or Notes';
 const label1 = 'This will be subtracted from your spending limit';
 const label2 = 'Until';
-const label3 = 'This will show below the transactio'
+const label3 = 'This will show below the transaction'
 
 export default class Dashboard extends Component {
 

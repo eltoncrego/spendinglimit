@@ -16,6 +16,8 @@ import {
   QuickActions,
 } from 'react-native';
 
+import { storeItem, clearTransactions } from './../func/storage';
+
 const spendingPrompt = 'What is your spending limit?'
 const label1 = 'This amount will be used for one week.'
 const placeholder = 'e.g. $120.00'
@@ -92,22 +94,14 @@ export default class ChangeLimit extends Component {
     return true;
   }
 
-  async storeItem(key, item) {
-    try {
-      await AsyncStorage.setItem(key, item);
-      return;
-    } catch (error) {
-      return error;
-    }
-  }
-
   handleNewSpendingLimit() {
+    clearTransactions();
     if (this.validateSpendingLimit(this.state.spendinglimit__f)){
       var that = this;
       var nextWeek = new Date((new Date()).getTime() + 7 * 24 * 60 * 60 * 1000);
-      this.storeItem('spendinglimit', this.state.spendinglimit__f).then(() => {
-        this.storeItem('amountSpent', '0').then(() => {
-          this.storeItem('expiration', nextWeek).then(() => {
+      storeItem('spendinglimit', this.state.spendinglimit__f).then(() => {
+        storeItem('amountSpent', '0').then(() => {
+          storeItem('expiration', nextWeek).then(() => {
             if(that.props.navigation.state.params != null){
               that.props.navigation.state.params.onNavigate();
             }

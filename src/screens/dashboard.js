@@ -9,13 +9,18 @@ import {
   TouchableOpacity,
   Animated,
   StatusBar,
-  AsyncStorage,
   TextInput,
   FlatList,
   Keyboard,
   DeviceEventEmitter,
 } from 'react-native';
 import  FontAwesome, { Icons } from 'react-native-fontawesome';
+
+import {
+  storeItem,
+  retrieveItem,
+  clearTransactions,
+} from './../func/storage';
 
 const button_label = 'set new spending limit';
 const add_button_label = 'add new transaction';
@@ -51,27 +56,9 @@ export default class Dashboard extends Component {
     };
   }
 
-  async storeItem(key, item) {
-    try {
-      await AsyncStorage.setItem(key, item);
-      return;
-    } catch (error) {
-      return error;
-    }
-  }
-
-  async retrieveItem(key) {
-    try {
-      const item =  await AsyncStorage.getItem(key);
-      return item;
-    } catch (error) {
-      return error;
-    }
-  }
-
-  refreshSpendingLimit() {
+  retrieveSpendingLimit() {
     const that = this;
-    this.retrieveItem('spendinglimit').then((data) => {
+    retrieveItem('spendinglimit').then((data) => {
       console.log("Limit synced: " + data);
       that.setState({
         spendinglimit: data,
@@ -79,7 +66,7 @@ export default class Dashboard extends Component {
     }).catch((error) => {
       alert(error.message);
     });
-    this.retrieveItem('expiration').then((data) => {
+    retrieveItem('expiration').then((data) => {
       console.log("Expiration synced: " + data);
       that.setState({
         expiration: data,
@@ -89,9 +76,9 @@ export default class Dashboard extends Component {
     });
   }
 
-  refreshTransactions() {
+  retrieveTransactions() {
     const that = this;
-    this.retrieveItem('currentTransactions').then((data) => {
+    retrieveItem('currentTransactions').then((data) => {
       console.log("Transactions synced: ");
       console.log(JSON.parse(data));
       that.setState({
@@ -102,9 +89,9 @@ export default class Dashboard extends Component {
     });
   }
 
-  refreshAmountSpent() {
+  retrieveAmountSpent() {
     const that = this;
-    this.retrieveItem('amountSpent').then((data) => {
+    retrieveItem('amountSpent').then((data) => {
       console.log("Spending synced: " + data);
       that.setState({
         amountSpent: data,
@@ -114,10 +101,11 @@ export default class Dashboard extends Component {
     });
   }
 
+
   componentWillMount() {
-    this.refreshSpendingLimit();
-    this.refreshTransactions();
-    this.refreshAmountSpent();
+    this.retrieveSpendingLimit();
+    this.retrieveTransactions();
+    this.retrieveAmountSpent();
 
     this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
     this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
@@ -202,12 +190,11 @@ export default class Dashboard extends Component {
   changeSpendingLimit() {
     var QuickActions = require('react-native-quick-actions');
     QuickActions.clearShortcutItems();
-    AsyncStorage.clear();
     this.props.navigation.navigate('ChangeLimit', {
       onNavigate: () => {
-        this.refreshSpendingLimit();
-        this.refreshTransactions();
-        this.refreshAmountSpent();
+        this.retrieveSpendingLimit();
+        this.retrieveTransactions();
+        this.retrieveAmountSpent();
       }
     });
   }
@@ -278,14 +265,14 @@ export default class Dashboard extends Component {
       this.closeNewTransaction();
 
       // Push spending data
-      this.storeItem('amountSpent', newSpending.toString()).then(() => {
+      storeItem('amountSpent', newSpending.toString()).then(() => {
         console.log('spending successfully saved')
       }).catch((error) => {
         alert(error.message);
       });
 
       // Push transaction data
-      this.storeItem('currentTransactions', JSON.stringify(this.state.currentTransactions)).then(() => {
+      storeItem('currentTransactions', JSON.stringify(this.state.currentTransactions)).then(() => {
         console.log('transactions successfully saved')
       }).catch((error) => {
         alert(error.message);
@@ -302,14 +289,14 @@ export default class Dashboard extends Component {
     });
 
     // Push spending data
-    this.storeItem('amountSpent', newSpending.toString()).then(() => {
+    storeItem('amountSpent', newSpending.toString()).then(() => {
       console.log('spending successfully saved')
     }).catch((error) => {
       alert(error.message);
     });
 
     // Push transaction data
-    this.storeItem('currentTransactions', JSON.stringify(this.state.currentTransactions)).then(() => {
+    storeItem('currentTransactions', JSON.stringify(this.state.currentTransactions)).then(() => {
       console.log('transactions successfully saved')
     }).catch((error) => {
       alert(error.message);
@@ -353,6 +340,13 @@ export default class Dashboard extends Component {
     this.setState({
       categoryIconSwitch: !this.state.categoryIconSwitch,
       selectedCategory: category_code - 2,
+    });
+  }
+
+  editTransaction(t_id) {
+    this.openNewTransaction();
+    this.setState({
+      transactionAmount__f: this.state.currentTransactions[t_id].amount,
     });
   }
 

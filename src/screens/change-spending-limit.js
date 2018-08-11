@@ -18,10 +18,13 @@ import {
 
 import { storeItem, clearTransactions } from './../func/storage';
 
-const spendingPrompt = 'What is your spending limit?'
-const label1 = 'This amount will be used for one week.'
-const placeholder = 'e.g. $120.00'
-const button_label = 'let\'s save money!'
+const spendingPrompt = 'What is your spending limit?';
+const placeholder = 'e.g. $120.00';
+const button_label = 'let\'s save money!';
+const term_label = 'For how long?'
+const term0 = '1 week';
+const term1 = '2 weeks';
+const term2 = '1 month';
 
 export default class ChangeLimit extends Component {
 
@@ -157,7 +160,6 @@ export default class ChangeLimit extends Component {
                 }}
                 onSubmitEditing={() => this.handleNewSpendingLimit()}/>
             </View>
-            <Text style={styles.prompt_label}>{label1}</Text>
           </View>
           <Animated.View style={[styles.form, {marginBottom: this.keyboardHeight}]}>
             <TouchableOpacity style={styles.button} onPress={() => this.handleNewSpendingLimit()}>

@@ -20,6 +20,7 @@ import {
   storeItem,
   retrieveItem,
   clearTransactions,
+  clearExpirationData,
 } from './../func/storage';
 
 const button_label = 'set new spending limit';
@@ -184,6 +185,7 @@ export default class Dashboard extends Component {
   changeSpendingLimit() {
     var QuickActions = require('react-native-quick-actions');
     QuickActions.clearShortcutItems();
+    clearExpirationData();
     this.props.navigation.navigate('ChangeLimit', {
       onNavigate: () => {
         this.retrieveSpendingLimit();
@@ -354,7 +356,7 @@ export default class Dashboard extends Component {
                     </View>
                   </View>
                   {
-                    item.note == null ? null :
+                    item.note == '' ? null :
                     <View style={styles.note_tags}>
                       <View style={styles.note_tag_item}>
                         <Text style={styles.note_tag_text}>{item.note.toUpperCase()}</Text>
@@ -553,14 +555,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   note_tag_item: {
+    alignItems: 'flex-start',
     borderRadius: 4,
-    backgroundColor: GLOBAL.COLOR.LIGHTGRAY,
-    paddingHorizontal: 8,
+    backgroundColor: GLOBAL.COLOR.RED,
+    paddingHorizontal: 16,
     paddingVertical: 4,
   },
   note_tag_text: {
     color: GLOBAL.COLOR.WHITE,
     fontFamily: 'Open Sans',
-    fontSize: 10,
+    fontSize: 12,
   }
 });

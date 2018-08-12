@@ -6,8 +6,6 @@ import ChangeLimit from './../screens/change-spending-limit';
 
 import { clearExpirationData } from './storage';
 
-import NotificationsIOS from 'react-native-notifications';
-
 export const SetLimit = createStackNavigator ({
   ChangeLimit: {
     screen: ChangeLimit,
@@ -56,25 +54,6 @@ export default class App extends Component {
       spendinglimit__set: false,
       spendinglimit_expiration: new Date(),
     };
-
-    this._boundOnNotificationReceivedForeground = this.onNotificationReceivedForeground.bind(this);
-    this._boundOnNotificationReceivedBackground = this.onNotificationReceivedBackground.bind(this);
-    this._boundOnNotificationOpened = this.onNotificationOpened.bind(this);
-    NotificationsIOS.addEventListener('notificationReceivedForeground', this._boundOnNotificationReceivedForeground);
-    NotificationsIOS.addEventListener('notificationReceivedBackground', this._boundOnNotificationReceivedBackground);
-    NotificationsIOS.addEventListener('notificationOpened', this._boundOnNotificationOpened);
-  }
-
-  onNotificationReceivedForeground(notification) {
-  	console.log("Notification Received - Foreground", notification);
-  }
-
-  onNotificationReceivedBackground(notification) {
-  	console.log("Notification Received - Background", notification);
-  }
-
-  onNotificationOpened(notification) {
-  	console.log("Notification opened by device user", notification);
   }
 
   async retrieveItem(key) {
@@ -87,7 +66,6 @@ export default class App extends Component {
   }
 
   componentWillMount() {
-
     const that = this;
     this.retrieveItem('spendinglimit').then((data1) => {
       this.retrieveItem('expiration').then((data2) => {
@@ -109,12 +87,6 @@ export default class App extends Component {
         spendinglimit__checked: false,
       });
     });
-  }
-
-  componentWillUnmount() {
-  	NotificationsIOS.removeEventListener('notificationReceivedForeground', this._boundOnNotificationReceivedForeground);
-  	NotificationsIOS.removeEventListener('notificationReceivedBackground', this._boundOnNotificationReceivedBackground);
-  	NotificationsIOS.removeEventListener('notificationOpened', this._boundOnNotificationOpened);
   }
 
   render() {

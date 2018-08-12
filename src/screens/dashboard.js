@@ -15,7 +15,6 @@ import {
   DeviceEventEmitter,
 } from 'react-native';
 import  FontAwesome, { Icons } from 'react-native-fontawesome';
-import NotificationsIOS from 'react-native-notifications';
 
 import {
   storeItem,
@@ -34,7 +33,6 @@ const placeholder2 = 'Payee or Notes';
 const label1 = 'This will be subtracted from your spending limit';
 const label2 = 'Until';
 const label3 = 'This will show below the transaction'
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default class Dashboard extends Component {
 
@@ -109,15 +107,6 @@ export default class Dashboard extends Component {
   }
 
   componentDidMount() {
-    NotificationsIOS.requestPermissions();
-    NotificationsIOS.consumeBackgroundQueue();
-
-    let localNotification = NotificationsIOS.localNotification({
-      alertTitle: "Test Title",
-    	alertBody: "This is a test",
-      fireDate: new Date(Date.now() + (1000)).toISOString(),
-    });
-
     var that = this;
     var QuickActions = require('react-native-quick-actions');
 
@@ -317,6 +306,7 @@ export default class Dashboard extends Component {
       outputRange: [812, 0],
     });
     var transformTransaction = {transform: [{translateY: transactionTranslation}]};
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var bg_color = GLOBAL.COLOR.GREEN;
     var prompt_color = GLOBAL.COLOR.WHITE;
     var currentRatio = parseFloat(this.state.amountSpent)/parseFloat(this.state.spendinglimit);

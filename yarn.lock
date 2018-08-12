@@ -4233,13 +4233,6 @@ react-native-fontawesome@^5.7.0:
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/react-native-fontawesome/-/react-native-fontawesome-5.7.0.tgz#7bfe57c21c6522d05eaf206474903c3f299bfc0d"
 
-react-native-notifications@^1.1.19:
-  version "1.1.19"
-  resolved "https://registry.yarnpkg.com/react-native-notifications/-/react-native-notifications-1.1.19.tgz#0b702878ae8c4e46874f6e8e96864acd2a001b4c"
-  dependencies:
-    core-js "^1.0.0"
-    uuid "^2.0.3"
-
 react-native-quick-actions@^0.3.7:
   version "0.3.7"
   resolved "https://registry.yarnpkg.com/react-native-quick-actions/-/react-native-quick-actions-0.3.7.tgz#5f4eff25e7f3785b2364f72527591ac7b777b1ef"
@@ -5254,10 +5247,6 @@ utils-merge@1.0.1:
 uuid@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.0.1.tgz#6544bba2dfda8c1cf17e629a3a305e2bb1fee6c1"
-
-uuid@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-2.0.3.tgz#67e2e863797215530dff318e5bf9dcebfd47b21a"
 
 uuid@^3.1.0:
   version "3.3.2"

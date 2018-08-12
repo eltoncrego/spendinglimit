@@ -4,6 +4,7 @@ dependencies: \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/../node_modules/react-native-quick-actions/RNQuickAction/RNQuickAction/RNQuickActionManager.h \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/../node_modules/react-native-notifications/RNNotifications/RNNotifications.h \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBundleURLProvider.h \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTRootView.h \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \

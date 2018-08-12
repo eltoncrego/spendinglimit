@@ -9,6 +9,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.reactNativeQuickActions.AppShortcutsPackage;
+import com.wix.reactnativenotifications.RNNotificationsPackage;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
           new AppShortcutsPackage(),
-          new AppShortcutsPackage()
+          new AppShortcutsPackage(),
+          new RNNotificationsPackage(MainApplication.this)
       );
     }
 

@@ -10,4 +10,6 @@ dependencies: \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
   /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
-  /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h
+  /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTPushNotificationManager.h \
+  /Users/eltoncrego/Documents/projects/github/spending-limit/code/spendinglimit/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventEmitter.h

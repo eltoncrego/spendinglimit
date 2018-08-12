@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from "react-navigation";
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, PushNotificationIOS } from 'react-native';
+import PushNotification from 'react-native-push-notification';
+
 import Dashboard from './../screens/dashboard';
 import ChangeLimit from './../screens/change-spending-limit';
-
 import { clearExpirationData } from './storage';
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+PushNotification.configure({
+    onRegister: function(token) {
+      console.log( 'TOKEN:', token );
+    },
+
+    onNotification: function(notification) {
+      console.log( 'NOTIFICATION:', notification );
+      notification.finish(PushNotificationIOS.FetchResult.NoData);
+    },
+
+    popInitialNotification: true,
+    requestPermissions: true,
+});
 
 export const SetLimit = createStackNavigator ({
   ChangeLimit: {
@@ -66,6 +83,7 @@ export default class App extends Component {
   }
 
   componentWillMount() {
+
     const that = this;
     this.retrieveItem('spendinglimit').then((data1) => {
       this.retrieveItem('expiration').then((data2) => {
@@ -73,6 +91,16 @@ export default class App extends Component {
           spendinglimit__checked: true,
           spendinglimit__set: data1 != null,
           spendinglimit_expiration: new Date(data2),
+        }, () => {
+          var notif_date = that.state.spendinglimit_expiration
+          var notif_title = "It's " + months[(new Date(that.state.spendinglimit_expiration)).getMonth()] + " " + (new Date(that.state.spendinglimit_expiration)).getDate() + "!";
+          var notif_message = "Your previous spending limit has expired. Come back to app to set your next spending limit."
+
+          PushNotification.localNotificationSchedule({
+            title: notif_title, // (optional)
+            message: notif_message, // (required)
+            date: notif_date
+          });
         });
       }).catch((error) => {
         that.setState({
@@ -90,6 +118,7 @@ export default class App extends Component {
   }
 
   render() {
+
     if(this.state.spendinglimit__checked != null){
       if(this.state.spendinglimit_expiration.setHours(0,0,0,0) <= this.state.today.getTime()){
         return <SetLimit/>;

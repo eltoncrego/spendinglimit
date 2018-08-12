@@ -23,6 +23,7 @@ import {
   clearExpirationData,
 } from './../func/storage';
 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const button_label = 'set new spending limit';
 const add_button_label = 'add new transaction';
 const confirm_button_label = 'confirm new transaction';
@@ -306,7 +307,6 @@ export default class Dashboard extends Component {
       outputRange: [812, 0],
     });
     var transformTransaction = {transform: [{translateY: transactionTranslation}]};
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var bg_color = GLOBAL.COLOR.GREEN;
     var prompt_color = GLOBAL.COLOR.WHITE;
     var currentRatio = parseFloat(this.state.amountSpent)/parseFloat(this.state.spendinglimit);

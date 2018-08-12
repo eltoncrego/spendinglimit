@@ -1,4 +1,4 @@
-import Reactotron, { asyncStorage } from 'reactotron-react-native'
+import Reactotron, { asyncStorage } from 'reactotron-react-native';
 
 Reactotron
   .configure() // controls connection & communication settings

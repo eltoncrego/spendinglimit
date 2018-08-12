@@ -18,13 +18,15 @@ import {
 
 import { storeItem, clearTransactions } from './../func/storage';
 
+import Reactotron from 'reactotron-react-native';
+
 const spendingPrompt = 'What is your spending limit?';
 const placeholder = 'e.g. $120.00';
 const button_label = 'let\'s save money!';
 const term_label = 'For how long?'
-const term0 = '1 week';
+const term0 = 'week';
 const term1 = '2 weeks';
-const term2 = '1 month';
+const term2 = 'end of month';
 
 export default class ChangeLimit extends Component {
 
@@ -34,6 +36,7 @@ export default class ChangeLimit extends Component {
     this.textTransform = new Animated.Value(0);
     this.state = {
       spendinglimit__f: '',
+      selectedTerm: new Animated.Value(0),
       fade_animation: new Animated.Value(0),
     };
   }
@@ -97,14 +100,31 @@ export default class ChangeLimit extends Component {
     return true;
   }
 
+  changeSelectedTerm(term){
+    Animated.timing(
+      this.state.selectedTerm,{
+        duration: 300,
+        toValue: term,
+    }).start();
+  }
+
   handleNewSpendingLimit() {
     clearTransactions();
     if (this.validateSpendingLimit(this.state.spendinglimit__f)){
       var that = this;
-      var nextWeek = new Date((new Date()).getTime() + 7 * 24 * 60 * 60 * 1000);
+      var newExpiration = new Date();
+      if(this.state.selectedTerm._value == 0){
+        newExpiration = new Date((new Date()).getTime() + 7 * 24 * 60 * 60 * 1000);
+      } else if (this.state.selectedTerm._value == 1){
+          newExpiration = new Date((new Date()).getTime() + 7 * 24 * 60 * 60 * 1000 * 2);
+      } else {
+        var yearCode = newExpiration.getFullYear();
+        var monthCode = newExpiration.getMonth();
+        newExpiration = new Date(yearCode, monthCode + 1, 0);
+      }
       storeItem('spendinglimit', this.state.spendinglimit__f).then(() => {
         storeItem('amountSpent', '0').then(() => {
-          storeItem('expiration', nextWeek).then(() => {
+          storeItem('expiration', newExpiration).then(() => {
             if(that.props.navigation.state.params != null){
               that.props.navigation.state.params.onNavigate();
             }
@@ -143,6 +163,36 @@ export default class ChangeLimit extends Component {
       outputRange: [40, 20],
     });
 
+    var selected0 = this.state.selectedTerm.interpolate({
+      inputRange: [0, 1, 2],
+      outputRange: [GLOBAL.COLOR.WHITE, GLOBAL.COLOR.GREEN, GLOBAL.COLOR.GREEN],
+    });
+
+    var selected0_text = this.state.selectedTerm.interpolate({
+      inputRange: [0, 1, 2],
+      outputRange: [GLOBAL.COLOR.DARKGRAY, GLOBAL.COLOR.WHITE, GLOBAL.COLOR.WHITE],
+    });
+
+    var selected1 = this.state.selectedTerm.interpolate({
+      inputRange: [0, 1, 2],
+      outputRange: [GLOBAL.COLOR.GREEN, GLOBAL.COLOR.WHITE, GLOBAL.COLOR.GREEN],
+    });
+
+    var selected1_text = this.state.selectedTerm.interpolate({
+      inputRange: [0, 1, 2],
+      outputRange: [GLOBAL.COLOR.WHITE, GLOBAL.COLOR.DARKGRAY, GLOBAL.COLOR.WHITE],
+    });
+
+    var selected2 = this.state.selectedTerm.interpolate({
+      inputRange: [0, 1, 2],
+      outputRange: [GLOBAL.COLOR.GREEN, GLOBAL.COLOR.GREEN, GLOBAL.COLOR.WHITE],
+    });
+
+    var selected2_text = this.state.selectedTerm.interpolate({
+      inputRange: [0, 1, 2],
+      outputRange: [GLOBAL.COLOR.WHITE, GLOBAL.COLOR.WHITE, GLOBAL.COLOR.DARKGRAY],
+    });
+
     return (
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle='light-content'/>
@@ -159,6 +209,20 @@ export default class ChangeLimit extends Component {
                   this.setState({spendinglimit__f: text})
                 }}
                 onSubmitEditing={() => this.handleNewSpendingLimit()}/>
+            </View>
+            <Animated.Text style={styles.prompt_label}>{term_label}</Animated.Text>
+            <View style={styles.form}>
+              <View style={styles.term_selector_wrapper}>
+                <TouchableOpacity onPress={() => this.changeSelectedTerm(0)} style={styles.term_option}>
+                  <Animated.Text style={[styles.term_option_text, {color: selected0_text, backgroundColor: selected0}]}>{term0.toUpperCase()}</Animated.Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.changeSelectedTerm(1)} style={[styles.term_option]}>
+                  <Animated.Text style={[styles.term_option_text, {color: selected1_text, backgroundColor: selected1}]}>{term1.toUpperCase()}</Animated.Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.changeSelectedTerm(2)} style={[styles.term_option]}>
+                  <Animated.Text style={[styles.term_option_text, {color: selected2_text, backgroundColor: selected2}]}>{term2.toUpperCase()}</Animated.Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
           <Animated.View style={[styles.form, {marginBottom: this.keyboardHeight}]}>
@@ -194,10 +258,11 @@ const styles = StyleSheet.create({
     color: GLOBAL.COLOR.WHITE,
   },
   prompt_label: {
-    paddingTop: 4,
+    marginTop: 16,
     fontSize: 15,
     alignSelf: 'flex-start',
-    fontFamily: 'Open Sans',
+    fontFamily: 'Montserrat',
+    fontWeight: '900',
     color: GLOBAL.COLOR.WHITE,
   },
   form: {
@@ -215,6 +280,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 4,
     color: GLOBAL.COLOR.DARKGRAY,
+  },
+  term_selector_wrapper: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderColor: GLOBAL.COLOR.WHITE,
+    borderWidth: 2,
+    borderRadius: 4,
+    padding: 2,
+  },
+  term_option: {
+    borderRadius: 4,
+  },
+  term_option_text: {
+    color: GLOBAL.COLOR.WHITE,
+    fontFamily: 'Open Sans',
+    fontSize: 15,
+    paddingVertical: 14,
+    paddingHorizontal: 14,
   },
   button: {
     alignItems: 'center',

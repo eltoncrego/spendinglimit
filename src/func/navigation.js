@@ -96,6 +96,7 @@ export default class App extends Component {
           var notif_title = "It's " + months[(new Date(that.state.spendinglimit_expiration)).getMonth()] + " " + (new Date(that.state.spendinglimit_expiration)).getDate() + "!";
           var notif_message = "Your previous spending limit has expired. Come back to app to set your next spending limit."
 
+          PushNotification.cancelAllLocalNotifications();
           PushNotification.localNotificationSchedule({
             title: notif_title, // (optional)
             message: notif_message, // (required)
